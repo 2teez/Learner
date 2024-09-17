@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <meta />
+        <title>Vue.js project with CDN</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="vue-app">{{text}}</div>
+        <script>
+            const vm = Vue.createApp({
+                data() {
+                    return {
+                        text: "Start using vue.js Today!",
+                    };
+                },
+            });
+            vm.mount("#vue-app");
+        </script>
+    </body>
+</html>

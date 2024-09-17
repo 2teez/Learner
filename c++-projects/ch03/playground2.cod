@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cstddef>
+
+int arr[] = {6, 4, 8, 2, 7};
+
+print_arr(arr);
+
+arr = double_em(arr);
+
+print_arr(arr);
+
+
+void print_arr(int* arr, char sep=",")
+{
+    for (const value: arr)
+    {
+        std::cout << value << sep;
+    }
+    std::cout << std::endl;
+}
+
+int *double_em(int *arr)
+{
+    for(auto &value: arr)
+    {
+        value *= value;
+    }
+    return arr;
+}

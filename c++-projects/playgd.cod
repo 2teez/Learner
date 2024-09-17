@@ -1,0 +1,7 @@
+#include <iostream>
+#include <string>
+
+std::string name("timothy");
+
+for (const auto letter: name)
+    std::cout << letter << "\n";

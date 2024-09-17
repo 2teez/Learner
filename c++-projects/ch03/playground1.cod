@@ -1,0 +1,19 @@
+#include <iostream>
+#include <cstddef>
+
+class NoDefault
+{
+    public:
+        NoDefault(int i): i(i) {}
+
+    private:
+        int i;
+};
+
+class C
+{
+    public:
+        C() = default;
+    private:
+        NoDefault nd(0);
+};

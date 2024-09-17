@@ -1,0 +1,17 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Flask Training!</title>
+        {% else %}
+        <title>Welcome to Microblog - Flask Training!</title>
+        {% endif %}
+    </head>
+    <body>
+        <h1>Hello, {{ user.username }}!</h1>
+        {% for post in posts %}
+        <div>
+            <p>{{post.author.username}} says: <b>{{post.post}} </b></p>
+        </div>
+        {% endfor %}
+    </body>
+</html>
