@@ -5,7 +5,7 @@ class PrimeNumber
 {
     public:
         PrimeNumber(): number(1) {}
-        PrimeNumber(unsigned number): number(check_number(number)){}
+        explicit PrimeNumber(unsigned number): number(check_number(number)){}
         friend std::ostream& operator<<(std::ostream& os, const PrimeNumber& pm)
         {
             os << pm.number;
