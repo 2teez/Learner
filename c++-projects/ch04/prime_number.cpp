@@ -5,7 +5,7 @@ class PrimeNumber
 {
     public:
         PrimeNumber(): number(1) {}
-        PrimeNumber(unsigned number): number(check_number(number)){}
+        explicit PrimeNumber(unsigned number): number(check_number(number)){}
         friend std::ostream& operator<<(std::ostream& os, const PrimeNumber& pm)
         {
             os << pm.number;
@@ -36,12 +36,12 @@ class PrimeNumber
 int main(int argc, char** argv)
 {
 
-    PrimeNumber pm, pm2 = {7919};
+    PrimeNumber pm, pm2(7919);
 
     std::cout << pm++ << pm2 << "\n" << pm++ << pm++ << pm << "\n";
     std::cout << pm2 << ":"<< ++pm2 << "\n";
 
-    PrimeNumber pmarr[] = {PrimeNumber(1), 2, PrimeNumber(5), PrimeNumber(7),
+    PrimeNumber pmarr[] = {PrimeNumber(1), PrimeNumber(5), PrimeNumber(7),
         PrimeNumber(23), PrimeNumber(7919), PrimeNumber(7927)};
 
     for (auto number: pmarr)
