@@ -15,7 +15,6 @@ int main(int argc, char** argv) {
         std::cout << input;
     }
     input.close();
-
     return 0;
 }
 
