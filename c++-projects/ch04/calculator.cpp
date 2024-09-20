@@ -13,3 +13,17 @@ double Calculator::operator+(const Calculator& rhs) {
     value += rhs.value;
     return value;
 }
+
+
+double Calculator::operator-(const Calculator& rhs) {
+    value -= rhs.value;
+    return value;
+}
+double Calculator::operator*(const Calculator& rhs) {
+    value *= rhs.value;
+    return value;
+}
+double Calculator::operator/(const Calculator& rhs) {
+    value /= rhs.value;
+    return value;
+}
