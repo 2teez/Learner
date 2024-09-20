@@ -9,6 +9,10 @@ class Calculator {
         explicit Calculator(double);
         friend std::ostream& operator<<(std::ostream&, const Calculator&);
         double operator+(const Calculator&);
+        double operator-(const Calculator&);
+        double operator*(const Calculator&);
+        double operator/(const Calculator&);
+
     private:
         double value = 0;
 };
