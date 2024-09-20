@@ -12,29 +12,33 @@
     #
 from typing import List
 
-def write_main(lst: List[str]):
+def write_main(lst: List[str], file):
     #
-    print('int main(int argc, char** argv)\n{')
+    print('int main(int argc, char** argv) {', file=file)
     previous_line = lst[0];
 
     for line in lst:
-        if not line.startswith("#include"):
-            if line.endswith(')'):
-                print('return 0;\n}')
-            print(line.strip())
+        if not line.startswith("#include") and not line.startswith("#"):
+            print(line, file=file, end='')
+    print('return 0;\n}', file=file, end='')
 
+def get_header(lst: List[str], file):
 
-def get_header(lst: List[str]):
     for line in lst:
         if line.startswith("#include"):
-            print(line.strip())
+            print(line.strip(), file=file)
+        elif line.startswith("#"):
+            line = f"#include <{line[1:len(line)-1]}>"
+            print(line.strip(), file=file)
 
-def get_function_declarations(lst: List[str]):
+
+def get_function_declarations(lst: List[str], file):
     previous_line = lst[0]
 
     for line in lst:
         if line == '{\n' and previous_line.endswith(')\n'):
-            print(f"{previous_line.strip()};")
+            print(line, file=file)
+            print(f"{previous_line.strip()};", file=file)
         previous_line = line
 
 def read_file(filename: str) -> List[str]:
@@ -46,11 +50,16 @@ def read_file(filename: str) -> List[str]:
     return file_list
 
 def main(filename: str) -> None:
-    lines = read_file(filename=filename)
+
+    lines = read_file(filename=filename) # read a file
+
+    output_file = filename + '.cpp'
+    # open a file out
+    file = open(output_file, 'a')
     # parse file
-    get_header(lines)
-    get_function_declarations(lines)
-    write_main(lines)
+    get_header(lines, file)
+    get_function_declarations(lines, file)
+    write_main(lines, file)
 
 
 

@@ -1,5 +1,6 @@
-#include <iostream>
-#include <string>
+#iostream
+#string
+#include <stdexcept>
 
 std::string name("timothy");
 
