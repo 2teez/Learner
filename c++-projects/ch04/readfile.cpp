@@ -11,8 +11,12 @@ int main(int argc, char** argv) {
     std::string filename = get_value("Enter filename ");
 
     input.open(filename.c_str());
+    std::string line;
+    input >> line;
+    std::cout << line << "\n";
     while(!input.eof()) {
-        std::cout << input;
+        input >> line;
+        std::cout << line << "\n";
     }
     input.close();
     return 0;
