@@ -46,10 +46,11 @@ def read_file(filename: str) -> List[str]:
     return file_list
 
 def main(filename: str) -> None:
+    lines = read_file(filename=filename)
     # parse file
-    get_header(read_file(filename=filename))
-    get_function_declarations(read_file(filename=filename))
-    write_main(read_file(filename=filename))
+    get_header(lines)
+    get_function_declarations(lines)
+    write_main(lines)
 
 
 
