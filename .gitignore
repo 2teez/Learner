@@ -1,5 +1,5 @@
 # ignore the .DS_Store file
 .DS_Store
 c++-projects/ch04/prime_number
-c++-projects/ch04/calculator_main
+*/*/calculator_main
 */*/*.cod
