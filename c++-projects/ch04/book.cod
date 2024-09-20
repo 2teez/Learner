@@ -1,0 +1,10 @@
+#include <iostream>
+#string
+#vector
+#ctime
+
+struct Book {
+    std::string title;
+    std::vector<std::string> authors;
+    std::time_t publication_date;
+};
