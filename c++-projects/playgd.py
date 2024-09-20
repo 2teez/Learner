@@ -36,7 +36,8 @@ def get_function_declarations(lst: List[str], file):
     previous_line = lst[0]
 
     for line in lst:
-        if line == '{\n' and previous_line.endswith(')\n'):
+        if (line.endswith(') {') and line.startswith('int main(')) \
+        or (line == '{\n' and previous_line.endswith(')\n')):
             print(line, file=file)
             print(f"{previous_line.strip()};", file=file)
         previous_line = line
