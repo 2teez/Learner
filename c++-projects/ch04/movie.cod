@@ -1,0 +1,8 @@
+#include <iostream>
+#string
+#vector
+
+stuct Movie {
+    std::string title;
+    std::vector<std::string> actors;
+};
