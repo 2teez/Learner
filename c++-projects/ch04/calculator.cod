@@ -1,0 +1,10 @@
+#iostream
+#include <string>
+
+struct Person {
+   std::string name;
+   int age = 0;
+   };
+
+Person tim {"timothy", 23};
+std::cout << tim.name << tim.age << std::endl;
