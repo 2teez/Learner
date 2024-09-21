@@ -12,10 +12,10 @@ int main(int argc, char** argv) {
 
     input.open(filename.c_str());
     std::string line;
-    input >> line;
+    std::getline(input, line);
     std::cout << line << "\n";
     while(!input.eof()) {
-        input >> line;
+        std::getline(input, line);
         std::cout << line << "\n";
     }
     input.close();
