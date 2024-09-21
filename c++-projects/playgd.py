@@ -61,8 +61,6 @@ def main(filename: str) -> None:
     get_function_declarations(lines, file)
     write_main(lines, file)
 
-
-
 if __name__ == '__main__':
     # launch the main function
     import sys
