@@ -15,7 +15,7 @@ class Arith:
         '*': [multiplication, 'multiplication'],
     }
 
-    def __init__(self, *args,**sign):
+    def __init__(self, *args, **sign):
         # class instance
         self.__args = args
         self.__sign = sign['sign']

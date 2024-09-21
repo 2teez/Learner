@@ -21,7 +21,9 @@ def main() -> None:
         while sign not in '+,-,/,*':
             print('Select any of the below math operation:')
             sign = get_user_input('+, -, /, *: ')
-        print(f'You would be randomly tested on {Arithmetic.math_sign[sign][1].upper()}')
+        print(
+            f'You would be randomly tested on {Arithmetic.math_sign[sign][1].upper()}'
+        )
         number_limit = 0
         try:
             number_limit = int(

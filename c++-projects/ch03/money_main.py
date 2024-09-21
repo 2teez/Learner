@@ -2,13 +2,14 @@
 
 from money import Money
 
+
 def main():
-    '''main function'''
+    """main function"""
 
     m1, m2 = Money(3, 5), Money(5, 89)
     print(m2, m1)
-    print(m2+m1)
-    print(m1-m2)
+    print(m2 + m1)
+    print(m1 - m2)
 
 
 if __name__ == '__main__':
