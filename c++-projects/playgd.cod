@@ -6,3 +6,8 @@ std::string name("timothy");
 
 for (const auto letter: name)
     std::cout << letter << "\n";
+
+void say()
+{
+    std::cout << "Hello, there!";
+}
