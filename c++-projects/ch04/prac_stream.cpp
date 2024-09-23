@@ -4,6 +4,7 @@
 
 void copyChar(std::istream& = std::cin);
 void copyLine(std::istream& = std::cin);
+void sendLine(std::ostream& = std::cout);
 
 int main(int argc, char** argv) {
 
@@ -24,6 +25,23 @@ int main(int argc, char** argv) {
     copyLine(std::cin);
     copyLine();
 
+    // close fin file
+    fin.close();
+
+    // using sendLine
+    std::ofstream fout;
+    fout.open("morestuf.txt");
+
+    if (fout.fail()) {
+        std::cout << "File morestuff.txt doesn't exist.";
+        std::exit(1);
+    }
+
+    std::cout << "Enter 2 lines of input:\n";
+    sendLine(fout);
+    sendLine(std::cout);
+    sendLine(); // call std::cout implicitly
+    fout.close();
 
     return 0;
 }
@@ -40,4 +58,11 @@ void copyLine(std::istream& is)
   std::string str;
   std::getline(is, str);
   std::cout << str << std::endl;
+}
+
+void sendLine(std::ostream& os)
+{
+  std::string str;
+  std::getline(std::cin, str);
+  os << str << std::endl;
 }
