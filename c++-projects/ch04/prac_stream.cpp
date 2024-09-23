@@ -18,5 +18,5 @@ void copyChar(std::istream& is)
 {
   char char_value;
   is.get(char_value);
-  std::cout << char_value;
+  std::cout << char_value << std::endl;
 }
