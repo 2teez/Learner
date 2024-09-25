@@ -4,4 +4,7 @@ c++-projects/ch04/prime_number
 */*/calculator_main
 */*/*.cod
 */*/readfile
+*/*/*.o
 */*/prac_stream
+*/*/pass_ss
+*/*/Makefile
