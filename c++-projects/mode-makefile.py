@@ -6,12 +6,11 @@ def ignore_line(lookup, file):
     status = False
     with filepath.open() as file:
         for line in file.readlines():
-            if line.strip() == lookup:
+            if lookup in line:
                 status = True
                 break
-
-    if status:
-        return f"echo */*/{lookup} >> {file}"
+    if not status:
+        return f"echo */*/{lookup} >> {file.name}"
     return ""
 
 def remove_extensions(file):
