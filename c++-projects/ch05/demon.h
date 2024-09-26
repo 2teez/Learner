@@ -8,7 +8,7 @@ class Demon: public Creature {
     public:
         Demon() = delete;
         Demon(int, int, const std::string& = "Demon");
-        const std::string& get_type() const;
+        virtual const std::string& get_type() const;
         int get_strength() const;
         int get_hit() const;
         virtual int get_damage() const;
