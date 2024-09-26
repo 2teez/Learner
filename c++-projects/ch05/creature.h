@@ -2,7 +2,7 @@
 #ifndef CREATURE_H
 #define CREATURE_H
 
-#include <ostream>
+#include <iostream>
 #include <string>
 
 class Creature {

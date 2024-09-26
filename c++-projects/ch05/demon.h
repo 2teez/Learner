@@ -11,7 +11,7 @@ class Demon: public Creature {
         const std::string& get_type() const;
         int get_strength() const;
         int get_hit() const;
-        int get_damage() const;
+        virtual int get_damage() const;
         friend std::ostream& operator<<(std::ostream&, const Demon&);
 
     private:
