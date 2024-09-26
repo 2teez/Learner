@@ -1,7 +1,7 @@
 # ignore the .DS_Store file
 .DS_Store
 c++-projects/ch04/prime_number
-*/*/calculator_main
+
 */*/*.cod
 */*/readfile
 */*/*.o
@@ -9,3 +9,4 @@ c++-projects/ch04/prime_number
 */*/pass_ss
 */*/Makefile
 */*/makefile
+*/*/calculator_main
