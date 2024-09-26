@@ -6,11 +6,11 @@
 class CyberDemon: public Demon {
     public:
         CyberDemon() = delete;
-        CyberDemon(int, int, const std::string&);
+        CyberDemon(int, int, const std::string& = "CyberDemon");
         const std::string& get_type() const;
         int get_strength() const;
         int get_hit() const;
-        //int get_damage();
+        virtual int get_damage() const;
 
     private:
         std::string type = "CyberDemon";
