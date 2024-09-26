@@ -23,26 +23,26 @@ def write_makefile(files):
         if len(files) == 1:
             cfile = remove_extensions(files[0])
             ofile = cfile+'.o'
-            print(f"{cfile}:\t{ofile} \
-                \r\tg++ {ofile} -o {cfile}\n\
-                \r{ofile}:\t{files[0]} \
-                \r\tg++ -Wall -std=c++17 -c {files[0]} \
-                \rignore: \
-                \r\t{ignore_line(cfile, '../../.gitignore')} \
-                \rclean: \
-                \r\trm -rf {ofile} {cfile}", file=file)
+            print(f"{cfile}:\t{ofile}\
+                \n\tg++ {ofile} -o {cfile}\
+                \n{ofile}:\t{files[0]}\
+                \n\tg++ -Wall -std=c++17 -c {files[0]}\
+                \nignore:\
+                \n\t{ignore_line(cfile, '../../.gitignore')}\
+                \nclean:\
+                \n\trm -rf {ofile} {cfile}", file=file)
         else:  # write for multiple files
             cfiles = [remove_extensions(file) for file in files]
             ofiles = [file+'.o' for file in cfiles]
             mofiles = ' '.join(ofiles)
-            print(f"{cfiles[0]}:\t{mofiles} \
-                \r\tg++ {mofiles} -o {cfiles[0]}\n\
-                \r{ofiles[0]}:\t{files[0]} \
-                \r\tg++ -Wall -std=c++17 -c {' '.join(files)} \
-                \rignore: \
-                \r\t{ignore_line(cfiles[0], '../../.gitignore')} \
-                \rclean: \
-                \r\trm -rf {mofiles} {cfiles[0]}", file=file)
+            print(f"{cfiles[0]}:\t{mofiles}\
+                \n\tg++ {mofiles} -o {cfiles[0]}\
+                \n{ofiles[0]}:\t{files[0]}\
+                \n\tg++ -Wall -std=c++17 -c {' '.join(files)}\
+                \nignore:\
+                \n\t{ignore_line(cfiles[0], '../../.gitignore')}\
+                \nclean:\
+                \n\trm -rf {mofiles} {cfiles[0]}", file=file)
 
 def main(*args):
     import subprocess
