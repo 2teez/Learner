@@ -14,7 +14,7 @@ def write_makefile(files):
                 \r{ofile}:\t{files[0]} \
                 \r\tg++ -Wall -std=c++17 -c {files[0]} \
                 \rclean: \
-                \r\trm -rf ofile cfile", file=file)
+                \r\trm -rf {ofile} {cfile}", file=file)
 
 def main(*args):
     import subprocess
