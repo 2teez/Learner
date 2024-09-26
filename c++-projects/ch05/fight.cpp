@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
     show_creature(demon);
 
     show_creature(CyberDemon {7, 41});
+    //show_creature(Balrog {7, 41});
 
     return 0;
 }
