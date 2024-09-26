@@ -9,12 +9,12 @@ def write_makefile(files):
         if len(files) == 1:
             cfile = remove_extensions(files[0])
             ofile = cfile+'.o'
-            print(f"""{cfile}:\t{ofile}
-                \r\tg++ {ofile} -o {cfile}\n
-                \r{ofile}:\t{files[0]}
-                \r\tg++ -Wall -std=c++17 -c {files[0]}
-                \rclean:
-                \r\trm -rf ofile cfile""", file=file)
+            print(f"{cfile}:\t{ofile} \
+                \r\tg++ {ofile} -o {cfile}\n\
+                \r{ofile}:\t{files[0]} \
+                \r\tg++ -Wall -std=c++17 -c {files[0]} \
+                \rclean: \
+                \r\trm -rf ofile cfile", file=file)
 
 def main(*args):
     files = args[1:]
