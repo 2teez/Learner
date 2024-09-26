@@ -5,7 +5,8 @@
 #include "elf.h"
 #include "balrog.h"
 
-void show_creature(const Creature&);
+template <typename T>
+void show_creature(const T&);
 
 int main(int argc, char** argv) {
     Creature creature(4, 5);
@@ -19,10 +20,13 @@ int main(int argc, char** argv) {
     Demon demon(7, 21);
     show_creature(demon);
 
+    show_creature(CyberDemon {7, 41});
+
     return 0;
 }
 
-void show_creature(const Creature& creature) {
+template <typename T>
+void show_creature(const T& creature) {
    std::cout << creature;
    std::cout << creature.get_type() << std::endl;
    std::cout << creature.get_damage() << std::endl;
