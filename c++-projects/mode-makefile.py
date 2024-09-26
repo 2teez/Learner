@@ -13,6 +13,8 @@ def write_makefile(files):
                 \r\tg++ {ofile} -o {cfile}\n\
                 \r{ofile}:\t{files[0]} \
                 \r\tg++ -Wall -std=c++17 -c {files[0]} \
+                \rignore: \
+                \r\t{ignore_line(cfile[0], '../../.gitignore')} \
                 \rclean: \
                 \r\trm -rf {ofile} {cfile}", file=file)
 
