@@ -3,6 +3,7 @@ def remove_extensions(file):
     return file.split('.')[0]
 
 def write_makefile(files):
+    # write out make file for a single file
     filename = 'makefile'
     with open(filename, 'w') as file:
         if len(files) == 1:
