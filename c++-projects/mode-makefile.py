@@ -1,4 +1,18 @@
 #!/usr/bin/env python3
+
+def ignore_line(lookup, file):
+    import pathlib
+    filepath = pathlib.Path(file)
+    status = False
+    with filepath.open() as file:
+        for line in file.readlines():
+            if lookup in line:
+                status = True
+                break
+    if not status:
+        return f"echo */*/{lookup} >> {file.name}"
+    return ""
+
 def remove_extensions(file):
     return file.split('.')[0]
 
@@ -17,6 +31,18 @@ def write_makefile(files):
                 \r\t{ignore_line(cfile[0], '../../.gitignore')} \
                 \rclean: \
                 \r\trm -rf {ofile} {cfile}", file=file)
+        else:  # write for multiple files
+            cfiles = [remove_extensions(file) for file in files]
+            ofiles = [file+'.o' for file in cfiles]
+            mofiles = ' '.join(ofiles)
+            print(f"{cfiles[0]}:\t{mofiles} \
+                \r\tg++ {mofiles} -o {cfiles[0]}\n\
+                \r{ofiles[0]}:\t{files[0]} \
+                \r\tg++ -Wall -std=c++17 -c {' '.join(files)} \
+                \rignore: \
+                \r\t{ignore_line(cfiles[0], '../../.gitignore')} \
+                \rclean: \
+                \r\trm -rf {mofiles} {cfiles[0]}", file=file)
 
 def main(*args):
     import subprocess
