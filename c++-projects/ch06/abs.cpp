@@ -12,11 +12,11 @@ namespace Absolute {
         return max;
     }
 
-    /*template <typename T>
-    T abs(T& value) {
+    template <typename T>
+    T abs(T value) {
         if (value < 0) {
-            return static_cast<T>(-1)*(value);
+            return (-1)*(value);
         }
         return value;
-        }*/
+    }
 }
