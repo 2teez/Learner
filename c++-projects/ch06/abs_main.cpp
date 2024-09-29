@@ -30,6 +30,14 @@ int main(int argc, char** argv) {
     Sorter::sort(names, 4);
     printer(names, 4);
 
+    // sorting double values
+    double b[5] = {5.5, 4.4, 1.1, 3.3, 2.2};
+    std::cout << "Before Sorting...\n";
+    printer(b, sizeof(b)/sizeof(b[0]));
+    Sorter::sort(b, 5);
+    std::cout << "After Sorting...\n";
+    printer(b, sizeof(b)/sizeof(b[0]));
+
     return 0;
 }
 
