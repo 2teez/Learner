@@ -28,9 +28,9 @@ void* Pair<T,V>::get_value_at(int index) const {
     else return (void*)&second;
 }
 
-/*template<typename T, typename V>
+template<typename T, typename V>
 std::ostream& operator<<(std::ostream& os, const Pair<T, V>& pair) {
-    os << "Pair <first: " << pair.first <<
-    ", second: " << pair.second << ">"<< std::endl;
+    os << "Pair <first: " << pair.get_value_at0() <<
+    ", second: " << pair.get_value_at1() << ">" << std::endl;
     return os;
-    }*/
+}

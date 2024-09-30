@@ -12,7 +12,7 @@ class Pair {
     T get_value_at0() const;
     V get_value_at1() const;
     void* get_value_at(int) const;
-    friend std::ostream& operator<<(std::ostream&, Pair<T, V>);
+    //friend std::ostream& operator<<(std::ostream&, Pair<T, V>);
     private:
         T first;
         V second;
