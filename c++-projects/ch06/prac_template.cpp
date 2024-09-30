@@ -22,7 +22,15 @@ V Pair<T, V>::get_value_at1() const {
 
 template <typename T, typename V>
 void* Pair<T,V>::get_value_at(int index) const {
-    if (index < 0 or index > 1)
+    if (index < 0 || index > 1)
         throw std::runtime_error("invalid index");
-    return (index == 0 ? get_value_at0() : get_value_at1());
+    if (index == 0) return (void*)&first;
+    else return (void*)&second;
 }
+
+/*template<typename T, typename V>
+std::ostream& operator<<(std::ostream& os, const Pair<T, V>& pair) {
+    os << "Pair <first: " << pair.first <<
+    ", second: " << pair.second << ">"<< std::endl;
+    return os;
+    }*/
