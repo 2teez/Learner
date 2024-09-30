@@ -20,7 +20,7 @@ struct Dog : public Pet {
 
 struct Cat: public Pet {
     explicit Cat(const std::string& name): Pet(name) {}
-    explicit Cat(const Cat&);
+    explicit Cat(const Pet&);
     const Cat& operator=(const Cat&);
     virtual std::string get_name() override {
         return name;
@@ -49,8 +49,9 @@ int main(int argc, char** argv) {
 
     get_a_pet(pets[0]);
 
-    //Cat kat(pets[2]);
-    //get_a_pet(&kat);
+    Cat cat ("cat");
+    Cat kat(cat);
+    get_a_pet(&kat);
 
     return 0;
 }
@@ -64,7 +65,7 @@ const Pet& Pet::operator=(const Pet& pet) {
     return pet;
 }
 
-Cat::Cat(const Cat& pet): Pet(pet) {
+Cat::Cat(const Pet& pet): Pet(pet) {
     name = pet.name;
 }
 
