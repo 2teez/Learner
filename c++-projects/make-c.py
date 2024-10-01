@@ -16,19 +16,25 @@ def generate_default_file(stream) -> str:
 
 # make a file
 def make_file(filename):
-    with open(filename, 'w') as file:
-        file.writelines(
-            generate_default_file(
-                """
-        #include <iostream>
-        #include <cstddef>
+    # dictionary with key for different languages
+    file_starters = {
+        'cpp': """
+#include <iostream>
+#include <cstddef>
 
-        int main(int argc, char** argv) {
-            return 0;
-        }
-        """
-            )
-        )
+int main(int argc, char** argv) {
+    return 0;
+}
+""",
+        'sh': '#!/usr/bin/env bash',
+        'py': '#!/usr/bin/env python3',
+        'txt': '',
+        'pl': '#!/usr/bin/env perl',
+    }
+    # get the file extension to write the file started code
+    _, ext = filename.split('.')
+    with open(filename, 'w') as file:
+        file.writelines(generate_default_file(file_starters[ext]))
         print('Done')
 
 
