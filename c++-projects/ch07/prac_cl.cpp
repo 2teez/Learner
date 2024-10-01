@@ -20,7 +20,7 @@ int Calculator::calculate(int a, int b) throw (operation::OperationalError) {
                 result = a + b;
             else {
                 std::cout << "Can't divide by Zero!";
-                throw 0;
+                throw operation::OperationalError();
             }
             break;
         default:
