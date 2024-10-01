@@ -16,7 +16,7 @@ struct Calculator {
     Calculator() = delete;
     explicit Calculator(const operation::Operation&);
 
-    int calculate(int, int) throw (operation::OperationalError);
+    int calculate(int, int);
     private:
         operation::Operation op;
 };

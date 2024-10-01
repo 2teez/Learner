@@ -3,7 +3,7 @@
 
 Calculator::Calculator(const operation::Operation& op): op(op){}
 
-int Calculator::calculate(int a, int b) throw (operation::OperationalError) {
+int Calculator::calculate(int a, int b) {
     int result {};
     switch(op) {
         case operation::Operation::Add:
@@ -20,7 +20,6 @@ int Calculator::calculate(int a, int b) throw (operation::OperationalError) {
                 result = a + b;
             else {
                 std::cout << "Can't divide by Zero!";
-                throw operation::OperationalError();
             }
             break;
         default:
