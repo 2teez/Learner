@@ -30,6 +30,11 @@ int main(int argc, char** argv) {
         'py': '#!/usr/bin/env python3',
         'txt': '',
         'pl': '#!/usr/bin/env perl',
+        'h': """
+        #ifndef _REPLACE_HEADER_
+        #define _REPLACE_HEADER_
+        #endif //_REPLACE_HEADER_
+        """,
     }
     # get the file extension to write the file started code
     _, ext = filename.split('.')
