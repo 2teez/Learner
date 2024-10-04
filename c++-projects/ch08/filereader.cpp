@@ -21,8 +21,8 @@ int main(int argc, char* argv[]) {
     }
 
     std::string wrd;
-    while(read(filereader) >> wrd)
-        std::cout << wrd;
+    while(std::getline(read(filereader), wrd))
+        std::cout << wrd << std::endl;
 
     filereader.close();
 
