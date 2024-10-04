@@ -13,6 +13,10 @@ template <typename T>
 bool checker(std::vector<int>::const_iterator,
     std::vector<int>::const_iterator, T);
 
+template <typename T>
+std::vector<int>::const_iterator checker(std::vector<int>::const_iterator,
+    std::vector<int>::const_iterator, T);
+
 int main(int argc, char** argv) {
     std::vector<int> int_values {6, 8, 23, 9, 5, 1};
     std::array<std::string, 2> status {"false", "true"};
@@ -28,6 +32,16 @@ bool checker(std::vector<int>::const_iterator beg,
         while(beg != end) {
             if (*beg == item) return true;
             ++beg;
+        }
+    return false;
+}
+
+template <typename T>
+std::vector<int>::const_iterator checker(std::vector<int>::const_iterator beg,
+    std::vector<int>::const_iterator end, T item) {
+
+        while(beg != end) {
+            if (*beg == item) return beg;
         }
     return false;
 }
