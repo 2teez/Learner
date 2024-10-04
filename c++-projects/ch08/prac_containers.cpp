@@ -1,6 +1,9 @@
 
+#include <array>
 #include <iostream>
+#include <cstdbool>
 #include <vector>
+
 /*
 Write a function that takes a pair of iterators to a
 vector<int> and an int value. Look for that value in the range
@@ -12,7 +15,9 @@ bool checker(std::vector<int>::const_iterator,
 
 int main(int argc, char** argv) {
     std::vector<int> int_values {6, 8, 23, 9, 5, 1};
-    std::cout << checker(int_values.cbegin(), int_values.cend(), 5) << "\n";
+    std::array<std::string, 2> status {"false", "true"};
+    std::cout << status[checker(int_values.cbegin(), int_values.cend(), 5)] << "\n";
+    std::cout << status[checker(int_values.cbegin(), int_values.cend(), -45)] << "\n";
     return 0;
 }
 
