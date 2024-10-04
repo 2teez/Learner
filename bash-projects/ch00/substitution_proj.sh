@@ -13,4 +13,4 @@
 echo "${USER^}"
 echo "I will now back up your home directory, $HOME"
 
-tar -cf ./backup_"$(date +%d-%m-%Y_%H-%M-%S)".tar $HOME 2>/dev/null
+tar -cvf ./backup_"$(date +%d-%m-%Y_%H-%M-%S)".tar $HOME 2>/dev/null
