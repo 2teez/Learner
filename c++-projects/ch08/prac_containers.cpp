@@ -1,4 +1,5 @@
 
+#include <variant>
 #include <array>
 #include <iostream>
 #include <cstdbool>
@@ -14,7 +15,7 @@ bool checker(std::vector<int>::const_iterator,
     std::vector<int>::const_iterator, T);
 
 template <typename T>
-std::vector<int>::const_iterator checker(std::vector<int>::const_iterator,
+std::variant<std::vector<int>::const_iterator, bool> checks(std::vector<int>::const_iterator,
     std::vector<int>::const_iterator, T);
 
 int main(int argc, char** argv) {
@@ -22,6 +23,7 @@ int main(int argc, char** argv) {
     std::array<std::string, 2> status {"false", "true"};
     std::cout << status[checker(int_values.cbegin(), int_values.cend(), 5)] << "\n";
     std::cout << status[checker(int_values.cbegin(), int_values.cend(), -45)] << "\n";
+    //std::cout << *checks(int_values.cbegin(), int_values.cend(), -45) << "\n";
     return 0;
 }
 
@@ -37,11 +39,12 @@ bool checker(std::vector<int>::const_iterator beg,
 }
 
 template <typename T>
-std::vector<int>::const_iterator checker(std::vector<int>::const_iterator beg,
+std::variant<std::vector<int>::const_iterator, bool> checks(std::vector<int>::const_iterator beg,
     std::vector<int>::const_iterator end, T item) {
 
         while(beg != end) {
             if (*beg == item) return beg;
+            ++beg;
         }
     return false;
 }
