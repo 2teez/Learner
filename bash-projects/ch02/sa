@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+pre=:
+post=:
+
+printf "$pre%s$post\n", $1
