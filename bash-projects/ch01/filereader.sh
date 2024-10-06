@@ -10,7 +10,7 @@ case $# in
             read -r filename
         done
         # read the file
-        while IFS=  read -r line
+        while IFS="\n"  read -r line
         do
             echo $line
         done < ${filename}
@@ -27,7 +27,7 @@ case $# in
             done
         fi
         # read the file
-        while IFS= read -r line
+        while IFS="\n" read -r line
         do
             echo $line
         done < ${filename}
