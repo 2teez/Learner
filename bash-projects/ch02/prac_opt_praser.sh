@@ -2,6 +2,8 @@
 
 filename=
 optstring=f:mw
+
+echo $OPTIND $OPTARG
 while getopts $optstring opt
 do
     case $opt in
