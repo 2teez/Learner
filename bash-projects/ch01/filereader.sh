@@ -5,7 +5,7 @@ case $# in
         echo "Usage: $0 <filename>"
         echo -e "No filename provided.\nProvide a valid filename: "
         read -r filename
-        while ! [[ -x $filename ]]; do
+        while ! [[ -n $filename ]]; do
             echo -n "Enter a valid filename: "
             read -r filename
         done
@@ -17,10 +17,10 @@ case $# in
         ;;
     1)
         filename=$1
-        if ! [[ -x $filename ]]; then
+        if ! [[ -n $filename ]]; then
             echo -n "Enter a valid filename: "
             read -r filename
-            while ! [[ -x $filename ]]
+            while ! [[ -n $filename ]]
             do
                echo -n "Enter a valid filename: "
                read -r filename
