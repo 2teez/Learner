@@ -4,17 +4,17 @@
 
 case $# in
     1);;
-    *) printf "Usage: ./dm.sh <directory name>" >&2
+    *) printf "Usage: ./dm.sh <directory name>\n" >&2
        exit 1
 esac
 
-dir=$1 
+dir=$1
 if ! [[ -x $dir ]]
 then
-   echo "Will you want to use a name different from" \
-" the one typed initially? [y|n]"
+   echo -n "Will you want to use a name different from" \
+" the one typed initially? [y|n]: "
     read -r ans
-    case $ans in 
+    case $ans in
         *[yY]*)
             echo "Enter a directory name."
             read -r dir
