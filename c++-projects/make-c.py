@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
         #define _REPLACE_HEADER_
         #endif //_REPLACE_HEADER_
         """,
-        '.java': """
+        'java': """
         import java.system.out;
         public class Program {
             public static void main(String[] args) {
