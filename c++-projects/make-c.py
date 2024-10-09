@@ -36,8 +36,9 @@ int main(int argc, char** argv) {
         #endif //_REPLACE_HEADER_
         """,
         'java': """
-        import java.system.out;
-        public class Program {
+        //package com.practice.program;
+        import static java.lang.System.out;
+        class Program {
             public static void main(String[] args) {
 
                 out.println("Hello, World");
