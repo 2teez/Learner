@@ -35,6 +35,15 @@ int main(int argc, char** argv) {
         #define _REPLACE_HEADER_
         #endif //_REPLACE_HEADER_
         """,
+        '.java': """
+        import java.system.out;
+        public class Program {
+            public static void main(String[] args) {
+
+                out.println("Hello, World");
+            }
+        }
+        """,
     }
     # get the file extension to write the file started code
     _, ext = filename.split('.')
