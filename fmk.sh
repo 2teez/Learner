@@ -2,7 +2,7 @@
 
 program="${0}"
 if [[ "$#" == 1 ]]; then
-  optstring=d:h
+  optstring="d:h"
   while getopts $optstring opt; do
     case "$opt" in
       d) filename="${OPTARG:1}"
@@ -44,31 +44,31 @@ function generate_file() {
     check_file_extension "$filename"
     case "$filename" in
       *.java*) echo "
-      //package com.practice.program;
-      import static java.lang.System.out;
-      class Program {
-          public static void main(String[] args) {
+//package com.practice.program;
+import static java.lang.System.out;
+class Program {
+    public static void main(String[] args) {
 
-              out.println("Hello, World");
-          }
-      }
+        out.println("Hello, World");
+    }
+}
       ";;
       *.cpp*) echo "
-      #include <iostream>
-      #include <cstddef>
+#include <iostream>
+#include <cstddef>
 
-      int main(int argc, char** argv) {
+int main(int argc, char** argv) {
 
-            return 0;
-      }";;
+    return 0;
+}";;
       *.sh*) echo "#!/usr/bin/env bash";;
       *.py*) echo "#!/usr/bin/env python3";;
       *.txt*) echo "";;
       *.pl*) echo "#!/usr/bin/env perl";;
       *.h*) echo "
-      #ifndef _REPLACE_HEADER_
-      #define _REPLACE_HEADER_
-      #endif //_REPLACE_HEADER_
+#ifndef _REPLACE_HEADER_
+#define _REPLACE_HEADER_
+#endif //_REPLACE_HEADER_
       ";;
       *) echo "";;
     esac
