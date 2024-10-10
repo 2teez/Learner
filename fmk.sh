@@ -61,13 +61,15 @@ function file_checker() {
     echo "$directory doesn't exit."
     echo "$directory would be created."
     return
+  else
+    ls "$directory" | while read -r file
+      do
+        if [[ "${filename}.$extension" == "$file" ]]; then
+            echo "$file exists.";
+            exit 1
+        fi
+      done
   fi
-  ls "$directory" | while read -r file
-    do
-      if [[  "$filename" == "$file" ]]; then
-        echo "$file exists."; exit 1
-      fi
-    done
 }
 
 file_checker  # file checker in a specified directory
