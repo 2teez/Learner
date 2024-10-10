@@ -1,7 +1,28 @@
 #!/usr/bin/env bash
 
 program="${0}"
-if [[ "${#}" -lt 2 || "${#}" -gt 4 ]]
+if [[ "$#" == 1 ]]; then
+  optstring=d:h
+  while getopts $optstring opt; do
+    case "$opt" in
+      d) filename="${OPTARG:1}"
+         if  [[ -e "$filename" ]]; then
+            echo "Deleting ...."
+            [[ -d "$filename" ]] && rm -rf "$filename"
+            [[ -f "$filename" ]] && rm "$filename"
+         else
+            echo "$filename doesn't exist"
+         fi
+        exit 0;;
+      h) echo "Usage: ${program} -d=<filename|didrectory>"
+         echo "Or"
+         echo "Usage: ${program} <filename> <directory> <extension>"
+      exit 0
+      ;;
+      ?) echo "Usage: ${program} -d=<filename|didrectory>"; exit 1;;
+    esac
+  done
+elif [[ "$#" -lt 2 || "$#" -gt 4 ]]
 then
   printf "Usage: %s <filename> <directory> <extension>\n" "$program"
   exit 1
@@ -23,31 +44,31 @@ function generate_file() {
     check_file_extension "$filename"
     case "$filename" in
       *.java*) echo "
-      \r//package com.practice.program;
-      \rimport static java.lang.System.out;
-      \rclass Program {
-          \r\tpublic static void main(String[] args) {
+      //package com.practice.program;
+      import static java.lang.System.out;
+      class Program {
+          public static void main(String[] args) {
 
-              \r\tout.println("Hello, World");
-          \r\t}
-      \r}
+              out.println("Hello, World");
+          }
+      }
       ";;
       *.cpp*) echo "
-      #\rinclude <iostream>
-      #\rinclude <cstddef>
+      #include <iostream>
+      #include <cstddef>
 
-      \rint main(int argc, char** argv) {
+      int main(int argc, char** argv) {
 
-            \r\treturn 0;
-      \r}";;
-      *.sh*) echo "\r#!/usr/bin/env bash";;
-      *.py*) echo "\r#!/usr/bin/env python3";;
+            return 0;
+      }";;
+      *.sh*) echo "#!/usr/bin/env bash";;
+      *.py*) echo "#!/usr/bin/env python3";;
       *.txt*) echo "";;
-      *.pl*) echo "\r#!/usr/bin/env perl";;
+      *.pl*) echo "#!/usr/bin/env perl";;
       *.h*) echo "
-      #\rifndef _REPLACE_HEADER_
-      #\rdefine _REPLACE_HEADER_
-      #\rendif //_REPLACE_HEADER_
+      #ifndef _REPLACE_HEADER_
+      #define _REPLACE_HEADER_
+      #endif //_REPLACE_HEADER_
       ";;
       *) echo "";;
     esac
@@ -76,7 +97,9 @@ file_checker  # file checker in a specified directory
 
 case "$directory" in
     *.*)  generate_file > "${filename}.$extension";;
-    *) mkdir -p "$directory"
+    *) mkdir -pv "$directory"
        cd "$directory"
        generate_file > "${filename}.$extension";;
 esac
+echo "Done."
+exit 0
