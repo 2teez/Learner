@@ -49,7 +49,7 @@ import static java.lang.System.out;
 class Program {
     public static void main(String[] args) {
 
-        out.println("Hello, World");
+        out.println(\"Hello, World\");
     }
 }
       ";;
