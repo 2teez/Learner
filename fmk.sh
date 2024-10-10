@@ -98,7 +98,7 @@ file_checker  # file checker in a specified directory
 case "$directory" in
     *.*)  generate_file > "${filename}.$extension";;
     *) mkdir -pv "$directory"
-       cd "$directory"
+       cd "$directory" || exit
        generate_file > "${filename}.$extension";;
 esac
 echo "Done."
