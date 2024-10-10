@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 
 program="${0}"
@@ -54,6 +53,24 @@ function generate_file() {
     esac
 }
 
+function file_checker() {
+  # check to find the file in the directory
+  # check if the directory doesn't exist
+  if ! [[ -x "$directory" ]]
+  then
+    echo "$directory doesn't exit."
+    echo "$directory would be created."
+    return
+  fi
+  ls "$directory" | while read -r file
+    do
+      if [[  "$filename" == "$file" ]]; then
+        echo "$file exists."; exit 1
+      fi
+    done
+}
+
+file_checker  # file checker in a specified directory
 
 case "$directory" in
     *.*)  generate_file > "${filename}.$extension";;
