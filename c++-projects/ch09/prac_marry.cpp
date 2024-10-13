@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]) {
 
-    std::array<int, 50> arr {0};
+    int arr[50]{0}; // used std::array<int, 50> {}; // initially
     int odd_numbers {1};
 
     // fill array with the first 50 odd numbers
@@ -29,5 +29,20 @@ int main(int argc, char* argv[]) {
         ++counter;
     }
     std::cout << std::endl;
+
+    // display array numbers using pointer arithmetics
+    counter = 0; // reset
+    for (int i {}; i < std::size(arr); ++i) {
+        if (counter == 10) {
+            std::cout << std::endl;
+            counter = 0; // reset
+        }
+        if (i < 100) {
+            std::cout << std::setw(2) << *(arr+i) << " ";
+        } else {
+            std::cout << *(arr+i) << " ";
+        }
+        ++counter;
+    }
     return 0;
 }
