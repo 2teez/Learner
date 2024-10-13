@@ -44,5 +44,22 @@ int main(int argc, char* argv[]) {
         }
         ++counter;
     }
+    std::cout << std::endl;
+    // print in reverse
+    counter = 0; // reset
+    for(auto i = std::end(arr)-1; i >= std::begin(arr); --i) {
+        if (counter == 10) {
+            std::cout << std::endl;
+            counter = 0; // reset
+        }
+        if (*i < 100) {
+            std::cout << std::setw(2) << *i << " ";
+        } else {
+            std::cout << *i << " ";
+        }
+        ++counter;
+    }
+    std::cout << "\n";
+
     return 0;
 }
