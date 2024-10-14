@@ -1,15 +1,8 @@
-#include <cstddef>
 #include <iostream>
 #include <iomanip>
-#include <sstream>
 #include <string>
 #include <memory>
 
-inline std::string str_repeat(const std::string& str, size_t n) {
-    std::ostringstream os {};
-    for (size_t i = 0; i < n; ++i) os << str;
-    return os.str();
-}
 
 int main(int argc, char* argv[]) {
 
