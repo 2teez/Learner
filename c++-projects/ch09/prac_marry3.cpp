@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
     double sum {};
     std::cout << "Value" << std::setw(8) << "Sum" << std::setw(6)
     << "X 6" << std::setw(8) << "Sqrt All" << std::endl;
-    std::cout << str_repeat("=", 35)<< std::endl;
+    std::cout << std::string(30, '=') << std::endl;
     for (int i {}; i < array_size; ++i) {
         sum += narr[i];
         std::cout << narr[i] << std::setw(8) << sum << std::setw(8)
