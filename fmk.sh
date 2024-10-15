@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# author: timothy adigun
+# date: October 2024
+# description:
+# make file and dierctory for
+# different programming languages
 
 program="${0}"
 if [[ "$#" == 1 ]]; then
