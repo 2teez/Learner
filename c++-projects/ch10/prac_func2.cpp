@@ -13,11 +13,14 @@ numbers; obviously, these extra functions have been added for the sake of the ex
 */
 #include <iostream>
 #include <cstddef>
+#include <vector>
 
 typedef bool (*func)(size_t);
 
 bool is_prime(size_t);
 void prime_teller(size_t, bool=1);
+std::vector<int> generate_prime_nums(size_t=1,size_t=16);
+void print_it(const std::vector<int>&);
 
 int main(int argc, char** argv) {
     int nums[] {3,7,23,17,6};
@@ -25,7 +28,23 @@ int main(int argc, char** argv) {
         //std::cout << is_prime(num);
         prime_teller(num, is_prime(num));
     }
+
+    print_it(generate_prime_nums(4));
     return 0;
+}
+
+void print_it(const std::vector<int>& numbers) {
+    for (auto num: numbers) std::cout << num << std::endl;
+}
+
+std::vector<int> generate_prime_nums(size_t start, size_t stop) {
+    std::vector<int> numbers{};
+    start += 1;
+    do {
+        if (is_prime(start)) numbers.push_back(start);
+        ++start;
+    } while(start < stop);
+    return numbers;
 }
 
 void prime_teller(size_t num, bool b) {
