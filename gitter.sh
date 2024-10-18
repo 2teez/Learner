@@ -55,7 +55,7 @@ do
 	    read -r comment
     done
     git commit -m "$comment"
-    header "Pushing your local respository to online repository.." "="
+    header "Pushing your local respository to online repository.. <Press Enter to continue..>" "="
     read -r line
     git push
 done
