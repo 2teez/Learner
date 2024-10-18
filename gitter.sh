@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# author: omitida 
+# author: omitida
 # date: 2024/10/18
 # Description: Providing a quick git command of
 # adding -- git add
@@ -17,31 +17,45 @@ if [[ "$#" -eq 0 ]]; then
 	Usage
 fi
 
+function header() {
+    local len="${#1}"
+    local pad="$2"
+    for (( n=0; n<"$len"; n++)); do
+        printf "%s" "$pad"
+    done
+    printf "\n"
+    printf "$1\n"
+    for (( n=0; n<"$len"; n++)); do
+        printf "%s" "$pad"
+    done
+    printf "\n"
+}
+
 current_branch_name=$(git branch | grep -i '*')
 current_branch_name="${current_branch_name:2}"
 n=1
 for name in $@;
 do
-    echo "Adding $name to ${current_branch_name} repo..."
+    header "Adding $name to ${current_branch_name} repo..." '*'
     echo "Do you want to continue? [c|n]"
     # read line and make it small caps
     read -r line
     while [[ "${line,,}" != "c" ]]; do
 	    if [[ $line == "n" ]]; then exit 0; fi
 	    echo "Enter 'c' to continue: "
-	    read -r line 
+	    read -r line
     done
     git add "$name"
 
-    echo "To commit addition to the branch ${current_branch_name} repo...., Enter your comment."
+    header "To commit addition to the branch ${current_branch_name} repo...., Enter your comment." "*"
     read -r comment
     while [[ "${#comment}" -eq 0 ]];
     do
-	    echo "commit addition to the branch with valid input; Enter your comment.: "
+	    header "commit addition to the branch with valid input; Enter your comment.: " "*"
 	    read -r comment
     done
     git commit -m "$comment"
-    echo "Pushing your local respository to online repository.."
+    header "Pushing your local respository to online repository.." "="
     read -r line
     git push
 done
