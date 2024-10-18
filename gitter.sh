@@ -27,17 +27,17 @@ do
     # read line and make it small caps
     read -r line
     while [[ "${line,,}" != "c" ]]; do
-	    if [[ $line == "n" ]]; then break; fi
+	    if [[ $line == "n" ]]; then exit 0; fi
 	    echo "Enter 'c' to continue: "
 	    read -r line 
     done
     git add "$name"
 
-    echo "commit addition to the branch ${current_branch_name} repo...."
+    echo "To commit addition to the branch ${current_branch_name} repo...., Enter your comment."
     read -r comment
     while [[ "${#comment}" -eq 0 ]];
     do
-	    echo "commit addition to the branch with valid input: "
+	    echo "commit addition to the branch with valid input; Enter your comment.: "
 	    read -r comment
     done
     git commit -m "$comment"
