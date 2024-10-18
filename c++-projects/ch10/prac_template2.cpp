@@ -10,15 +10,20 @@ plus()? Warning: This may not be as easy as you think!
 #include <algorithm>
 
 template <typename T1, typename T2>
-auto plus(T1 a, T2 b) -> decltype(a+b);
+auto plus(T1 a, T2 b) -> decltype(a+b) {
+    return a + b;
+}
+
+/*template <>
+auto plus(int* a, double* b) -> decltype(*a + *b){
+    return *a + *b;
+    }*/
 
 int main(int argc, char** argv) {
     std::cout << plus(34, 1.25) << '\n';
     std::cout << plus(std::string {"omit"}, "ida") << '\n';
+    /*int x = 4;
+    int y = 6;
+    std::cout << plus(&x, &y) << "\n";*/
     return 0;
-}
-
-template <typename T1, typename T2>
-auto plus(T1 a, T2 b) -> decltype(a+b) {
-    return a + b;
 }
