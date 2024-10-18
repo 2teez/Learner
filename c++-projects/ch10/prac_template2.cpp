@@ -14,8 +14,7 @@ auto plus(T1 a, T2 b) -> decltype(a+b);
 
 int main(int argc, char** argv) {
     std::cout << plus(34, 1.25) << '\n';
-    std::string_view firstname {"omit"};
-    std::cout << plus(firstname.data(), "adi") << "\n";
+    std::cout << plus(std::string {"omit"}, "ida") << '\n';
     return 0;
 }
 
