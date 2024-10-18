@@ -6,10 +6,19 @@ pointers.
 extra: Can you now make it so that you can also concatenate two string literals using
 plus()? Warning: This may not be as easy as you think!
 */
+#include <__config>
 #include <iostream>
 #include <cstddef>
 
-int main(int argc, char** argv) {
+template <typename T1, typename T2>
+auto plus(T1 a, T2 b) -> decltype(a+b);
 
+int main(int argc, char** argv) {
+    std::cout << plus(34, 1.25) << '\n';
     return 0;
+}
+
+template <typename T1, typename T2>
+auto plus(T1 a, T2 b) -> decltype(a+b) {
+    return a + b;
 }
