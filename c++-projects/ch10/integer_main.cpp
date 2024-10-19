@@ -34,5 +34,7 @@ int main(int argc, char** argv) {
     + Integer {7}
     * Integer {5}
     + Integer {8} << '\n';
+
+    Integer::printCount();  // static method
     return 0;
 }
