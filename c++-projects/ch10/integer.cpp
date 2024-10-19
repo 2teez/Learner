@@ -1,9 +1,14 @@
 
 #include "integer.h"
 
-Integer::Integer(int value): value {value} {}
+//int Integer::get_instance {};
+
+Integer::Integer(int value): value {value} {
+    ++get_instance;
+}
 Integer::Integer(const Integer& i): value {i.get_value()} {
     std::cout << value << " in Copy Constructor.." << '\n';
+    ++get_instance;
 }
 void Integer::set_value(int pvalue) {
     value = pvalue;
@@ -11,6 +16,10 @@ void Integer::set_value(int pvalue) {
 
 int Integer::get_value() const {
     return value;
+}
+
+void Integer::printCount() {
+    std::cout << get_instance << '\n';
 }
 
 Compare::compare Integer::compare(const Integer& i) const {
