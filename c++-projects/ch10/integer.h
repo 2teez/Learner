@@ -11,6 +11,7 @@ class Integer {
         explicit Integer(const Integer&);
         void set_value(int);
         int get_value() const;
+        static void printCount();
         Compare::compare compare(const Integer&) const;
         Integer& operator+(const Integer&);
         Integer& operator-(const Integer&);
@@ -20,6 +21,7 @@ class Integer {
 
     private:
             int value {};
+            static inline int get_instance {};
 };
 
 #endif //_INTEGER_
