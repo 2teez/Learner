@@ -23,6 +23,21 @@ Compare::compare Integer::compare(const Integer& i) const {
     return result;
 }
 
+Integer& Integer::operator+(const Integer& i) {
+    value += i.get_value();
+    return *this;
+}
+
+Integer& Integer::operator-(const Integer& i) {
+    value -= i.get_value();
+    return *this;
+}
+
+Integer& Integer::operator*(const Integer& i) {
+    value *= i.get_value();
+    return *this;
+}
+
 std::ostream& operator<<(std::ostream& os, const Integer& num) {
     os << num.get_value() << std::endl;
     return os;
