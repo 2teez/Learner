@@ -18,6 +18,17 @@ if [[ "$#" -eq 0 ]]; then
 	Usage
 fi
 
+function help_func() {
+    echo "Usage:" "$0 <filename> | -s | -h | -c <change to named branch>" 
+    echo
+    echo "Options are as follows:"
+    echo "-s	Displays the git status."
+    echo "-h	Display the help and description of usage."
+    echo "-c	<change to named branch>"
+    echo "	This option takes value which is the name of a named branch. And it changes to the branch IF it exist."
+    exit 1
+}
+
 function header() {
     local len="${#1}"
     local pad="$2"
@@ -37,7 +48,7 @@ current_branch_name="${current_branch_name:2}"
 n=1
 
 # using options with gitter added 2028/10/28
-option=":sc:"
+option=":shc:"
 while getopts ${option} opt; do
     case $opt in
         s)
@@ -54,6 +65,8 @@ while getopts ${option} opt; do
             done
             git checkout "$OPTARG"
             exit 0;;
+	h)
+	   help_func; exit 1;;
         *) echo "invalid options: $OPTARG - only '-s' and '-c <branch-name>' option is allowed."
            exit 1;;
     esac
