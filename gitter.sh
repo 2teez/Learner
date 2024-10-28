@@ -2,6 +2,7 @@
 # author: omitida
 # date: 2024/10/18
 # Description: Providing a quick git command of
+# status -- git status
 # adding -- git add
 # commit -- git commit -m
 # push   -- git push
@@ -41,7 +42,7 @@ while getopts ${option} opt; do
     case $opt in
         s)
             git status; exit 0;;
-        *) echo "invalid options: $OPTARG - only -s option is allowed."
+        *) echo "invalid options: $OPTARG - only '-s' option is allowed."
            exit 1;;
     esac
 done
