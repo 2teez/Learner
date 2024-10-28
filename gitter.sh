@@ -45,7 +45,7 @@ while getopts ${option} opt; do
         c)
             # only y or Y (as y would be used as lowercase) would be true
             # every other option would be false
-            echo -n "Would you want to change the present branch you are working in? [y|n]: "
+            echo -n "Change from ${current_branch_name} branch to ${OPTARG}? [y|n]: "
             while read -r answer; do
                 if [[ "${answer,,}" == 'y' ]]; then
                     break # from the while loop to run git command
