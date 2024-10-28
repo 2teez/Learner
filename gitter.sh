@@ -34,6 +34,18 @@ function header() {
 current_branch_name=$(git branch | grep -i '*')
 current_branch_name="${current_branch_name:2}"
 n=1
+
+# using options with gitter added 2028/10/28
+option=":s"
+while getopts ${option} opt; do
+    case $opt in
+        s)
+            git status; exit 0;;
+        *) echo "invalid options: $OPTARG - only -s option is allowed."
+           exit 1;;
+    esac
+done
+
 for name in $@;
 do
     header "Adding $name to ${current_branch_name} repo..." '*'
