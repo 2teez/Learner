@@ -37,12 +37,24 @@ current_branch_name="${current_branch_name:2}"
 n=1
 
 # using options with gitter added 2028/10/28
-option=":s"
+option=":sc:"
 while getopts ${option} opt; do
     case $opt in
         s)
             git status; exit 0;;
-        *) echo "invalid options: $OPTARG - only '-s' option is allowed."
+        c)
+            # only y or Y (as y would be used as lowercase) would be true
+            # every other option would be false
+            echo -n "Would you want to change the present branch you are working in? [y|n]: "
+            while read -r answer; do
+                if [[ "${answer,,}" == 'y' ]]; then
+                    break # from the while loop to run git command
+                else exit 0 # exit from this script all together
+                fi
+            done
+            git checkout "$OPTARG"
+            exit 0;;
+        *) echo "invalid options: $OPTARG - only '-s' and '-c <branch-name>' option is allowed."
            exit 1;;
     esac
 done
