@@ -68,13 +68,13 @@ while getopts ${option} opt; do
             git checkout "$OPTARG"
             exit 0;;
 	U)
-	    cat ../../../.gitignore |
+	    cat ../../.gitignore |
 		    while read -r line; do
 			if [[ $OPTARG == $line ]]; then
 				exit 0
 			fi
 		    done
-	    echo "${OPTARG}" >> ../.gitignore
+	    echo "${OPTARG}" >> ../../.gitignore
 	    exit 0;;
 	h)
 	   help_func; exit 1;;
