@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
 #define _REPLACE_HEADER_
 #endif //_REPLACE_HEADER_
       ";;
-      *.swift*) echo "import UIKit";;
+      *.swift*) echo "import Foundation";;
       *) echo "";;
     esac
 }
