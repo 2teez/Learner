@@ -19,11 +19,13 @@ if [[ "$#" -eq 0 ]]; then
 fi
 
 function help_func() {
-    echo "Usage:" "$0 <filename> | -s | -h | -c <change to named branch>" 
+    echo "Usage:" "$0 <filename> | -s | -h | -U | -c <change to named branch>" 
     echo
     echo "Options are as follows:"
     echo "-s	Displays the git status."
     echo "-h	Display the help and description of usage."
+    echo "-U	<filename>"
+    echo "	Update .gitignore file with the named file or document"
     echo "-c	<change to named branch>"
     echo "	This option takes value which is the name of a named branch. And it changes to the branch IF it exist."
     exit 1
@@ -48,7 +50,7 @@ current_branch_name="${current_branch_name:2}"
 n=1
 
 # using options with gitter added 2028/10/28
-option=":shc:"
+option=":shU:c:"
 while getopts ${option} opt; do
     case $opt in
         s)
@@ -65,6 +67,15 @@ while getopts ${option} opt; do
             done
             git checkout "$OPTARG"
             exit 0;;
+	U)
+	    cat ../.gitignore | 
+		    while read -r line; do
+			if [[ $OPTARG == $line ]]; then
+				exit 0
+			fi  
+		    done
+	    echo "${OPTARG}" >> ../.gitignore
+	    exit 0;;
 	h)
 	   help_func; exit 1;;
         *) echo "invalid options: $OPTARG - only '-s' and '-c <branch-name>' option is allowed."
