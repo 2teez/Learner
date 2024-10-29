@@ -9,6 +9,7 @@
 # check if the a file is supplied
 if [[ "${#}" -eq 0 ]]; then
     echo "Usage: $0 <filename.swift>"
+    exit 1
 fi
 
 filename=${1##*/}
