@@ -19,7 +19,7 @@ if [[ "$#" -eq 0 ]]; then
 fi
 
 function help_func() {
-    echo "Usage:" "$0 <filename> | -s | -h | -U | -c <change to named branch>" 
+    echo "Usage:" "$0 <filename> | -s | -h | -U | -c <change to named branch>"
     echo
     echo "Options are as follows:"
     echo "-s	Displays the git status."
@@ -68,11 +68,11 @@ while getopts ${option} opt; do
             git checkout "$OPTARG"
             exit 0;;
 	U)
-	    cat ../.gitignore | 
+	    cat ../../.gitignore |
 		    while read -r line; do
 			if [[ $OPTARG == $line ]]; then
 				exit 0
-			fi  
+			fi
 		    done
 	    echo "${OPTARG}" >> ../.gitignore
 	    exit 0;;
