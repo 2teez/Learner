@@ -9,14 +9,10 @@
 # The use will only provide the name of the file(s) to gitter
 
 function Usage() {
-    echo "Usage: $0 <filenames>"
+    echo "Usage: $0 <filenames> Or use $0 -h"
     exit 1
 }
 
-
-if [[ "$#" -eq 0 ]]; then
-	Usage
-fi
 
 function help_func() {
     echo "Usage:" "$0 <filename> | -s | -h | -U | -c <change to named branch>"
@@ -30,6 +26,11 @@ function help_func() {
     echo "	This option takes value which is the name of a named branch. And it changes to the branch IF it exist."
     exit 1
 }
+
+
+if [[ "$#" -eq 0 ]]; then
+	Usage
+fi
 
 function header() {
     local len="${#1}"
