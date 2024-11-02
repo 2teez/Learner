@@ -6,7 +6,7 @@
 #
 function Usage() {
     file=${0##*/}
-    echo "${file%%*.}" "<filename> or <directory> [std]"
+    echo "${file%%*.}" "<filename> or <directory> [std] [version]"
 }
 
 if [[ ${#} -eq 0 || ${#} -gt 3 ]]; then
