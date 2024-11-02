@@ -1,0 +1,3 @@
+/Users/timothyadigun/prac/genPrac/c++-projects/learn-cmake/ch02/build/CMakeFiles/Myapp.dir
+/Users/timothyadigun/prac/genPrac/c++-projects/learn-cmake/ch02/build/CMakeFiles/edit_cache.dir
+/Users/timothyadigun/prac/genPrac/c++-projects/learn-cmake/ch02/build/CMakeFiles/rebuild_cache.dir
