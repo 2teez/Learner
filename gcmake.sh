@@ -6,16 +6,25 @@
 #
 function Usage() {
     file=${0##*/}
-    echo "${file%%*.}" "<filename> or <directory>"
+    echo "${file%%*.}" "<filename> or <directory> [std]"
 }
 
-if [[ ${#} -eq 0 ]]; then
+if [[ ${#} -eq 0 || ${#} -gt 2 ]]; then
    Usage
+   exit 1
 fi
 
 filename="$1"
 extension="${1##*.}"
 cmakelists_file=
+std=
+
+if [[ -z "${2}" ]];then
+    std=17
+else
+    std="${2}"
+fi
+
 # if the cli argument is a directory and is not empty
 if [[ -d "$filename" ]] && ! [[ -s "$filename" ]]; then
    # move all the files to a sub-directory named src
@@ -44,7 +53,7 @@ echo "
 cmake_minimum_required(VERSION 3.15)
 # change the project name to name of choice
 project(Myapp)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD ${std})
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(Myapp src/${filename})
 " > "${cmakelists_file}"
