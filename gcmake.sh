@@ -9,7 +9,7 @@ function Usage() {
     echo "${file%%*.}" "<filename> or <directory> [std]"
 }
 
-if [[ ${#} -eq 0 || ${#} -gt 2 ]]; then
+if [[ ${#} -eq 0 || ${#} -gt 3 ]]; then
    Usage
    exit 1
 fi
@@ -18,11 +18,18 @@ filename="$1"
 extension="${1##*.}"
 cmakelists_file=
 std=
-
+version=
+# check for the cpp standard
 if [[ -z "${2}" ]];then
     std=17
 else
     std="${2}"
+fi
+
+if [[ -z "${3}" ]]; then
+    version=3.15
+else
+    version="${3}"
 fi
 
 # if the cli argument is a directory and is not empty
@@ -50,7 +57,7 @@ elif [[ -f "$filename" && "$extension" == "cpp" ]]; then
 fi
 
 echo "
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION ${version})
 # change the project name to name of choice
 project(Myapp)
 set(CMAKE_CXX_STANDARD ${std})
