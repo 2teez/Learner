@@ -36,7 +36,7 @@ fi
 if [[ -d "$filename" ]] && ! [[ -s "$filename" ]]; then
    # move all the files to a sub-directory named src
    mkdir -p "${filename}/src"
-   mv $filename/*.* "${filename}/src"
+   $(mv $filename/*.* "${filename}/src")
    #  then create a file named CMakeLists.txt
    cmakelists_file="${filename}/CMakeLists.txt"
    touch "${cmakelists_file}"
