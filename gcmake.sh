@@ -5,8 +5,8 @@
 # from the file or a directory specified.
 #
 function Usage() {
-    file=${0##*/}
-    echo "${file%%*.}" "<filename> or <directory> [std] [version]"
+    local file=$(basename "$0")
+    echo "Usage: $file <filename|directory> [C++ standard] [CMake version]"
 }
 
 if [[ ${#} -eq 0 || ${#} -gt 3 ]]; then
@@ -17,36 +17,19 @@ fi
 filename="$1"
 extension="${1##*.}"
 cmakelists_file=
-std=
-version=
-# check for the cpp standard
-if [[ -z "${2}" ]];then
-    std=17
-else
-    std="${2}"
-fi
 
-if [[ -z "${3}" ]]; then
-    version=3.15
-else
-    version="${3}"
-fi
+# check for the cpp standard, and cmake version
+std="${2:-17}"
+version="${3:-3.15}"
 
-# if the cli argument is a directory and is not empty
-if [[ -d "$filename" ]] && ! [[ -s "$filename" ]]; then
-   # move all the files to a sub-directory named src
-   mkdir -p "${filename}/src"
-   $(mv $filename/*.* "${filename}/src")
-   #  then create a file named CMakeLists.txt
-   cmakelists_file="${filename}/CMakeLists.txt"
-   touch "${cmakelists_file}"
-# if the cli argument is a directory and is empty
-elif [[ -d "$filename" && -s "$filename" ]]; then
+# if the cli argument is a directory
+if [[ -d "$filename" ]]; then
+    #  make an empty sub-directory named src
+    mkdir "${filename}/src"
+    mv "${filename}"/*.* "${filename}/src" 2>/dev/null
    #  then create a file named CMakeLists.txt
     cmakelists_file="${filename}/CMakeLists.txt"
     touch "${cmakelists_file}"
-   #  make an empty sub-directory named src
-    mkdir "${filename}/src"
 # if the cli argument is a cpp file
 elif [[ -f "$filename" && "$extension" == "cpp" ]]; then
    basename="${filename%%.*}" # strip the file extension off
