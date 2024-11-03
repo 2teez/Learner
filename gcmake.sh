@@ -37,9 +37,12 @@ elif [[ -f "$filename" && "$extension" == "cpp" ]]; then
    mv "$filename" "${basename}/src" # then move the filename into the directory
    cmakelists_file="${basename}/CMakeLists.txt"
    touch "${cmakelists_file}" # make CMakeLists.txt file in the directory
+else
+    echo "Error: Unsupported file type."
+    exit 1
 fi
 
-echo "
+cat << EOF > "${cmakelists_file}"
 cmake_minimum_required(VERSION ${version})
 # change the project name to name of choice
 project(Myapp)
@@ -47,6 +50,7 @@ set(CMAKE_CXX_STANDARD ${std})
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 add_executable(Myapp src/${filename})
-" > "${cmakelists_file}"
+EOF
 
+echo "CMakeLists.txt generated at $cmakelists_file"
 exit 0
