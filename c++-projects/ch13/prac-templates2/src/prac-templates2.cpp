@@ -10,6 +10,10 @@ std::ostream& pretty_print(std::ostream&, const std::array<T, S>);
 template <std::size_t S>
 std::ostream& pretty_print(std::ostream&, const std::array<char, S>);
 
+template <typename T>
+constexpr T PI = T(22.0/7);
+
+
 int main(int argc, char** argv) {
 
     std::array<int, 10> arr {1,5,7,8,3,8,5,4};
@@ -17,7 +21,10 @@ int main(int argc, char** argv) {
     std::cout << '\n';
     std::array<char, 10> arr_str {"clojure"};
      pretty_print(std::cout, arr_str);
+     std::cout << std::endl;
 
+     //constexpr double pi = 22/7.0;
+     std::cout << PI<double> << '\n';
     return 0;
 }
 
