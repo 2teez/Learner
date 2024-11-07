@@ -10,7 +10,7 @@ struct transport {
         virtual float max_distance() const = 0;
         virtual std::string description() const = 0;
 
-        //virtual ~transport() = 0;
+        virtual ~transport() = 0;
     private:
         float speed  {0};
         std::string fuel_type  {""};
