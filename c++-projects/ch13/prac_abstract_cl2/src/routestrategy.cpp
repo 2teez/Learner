@@ -15,10 +15,7 @@ struct short_route_strategy: public route_strategy {
         {}
 
         std::string calculate_route() const {
-            std::string str {"Shortest route from"};
-            str += std::string(origin) + "to ";
-            str += std::string(destination) + "\n";
-            return std::string(str);
+            return "Shortest route from" + origin + "to " + destination + "\n";
         }
 
         inline ~short_route_strategy(){}
