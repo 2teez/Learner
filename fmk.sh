@@ -76,6 +76,7 @@ int main(int argc, char** argv) {
 #endif //_REPLACE_HEADER_
       ";;
       *.swift*) echo "import Foundation";;
+      *.rb*)echo "#!/usr/bin/env ruby";;
       *) echo "";;
     esac
 }
