@@ -51,11 +51,22 @@ current_branch_name="${current_branch_name:2}"
 n=1
 
 # using options with gitter added 2028/10/28
-option=":shU:c:"
+option=":shrU:c:"
 while getopts ${option} opt; do
     case $opt in
         s)
             git status; exit 0;;
+	r)
+	    # this option shows the status and READ all the file(s)
+	    # that are either staged or are to be stage for commit
+            # read the status and get all the file(s) to check
+	    git status --short | awk '{print $2}' >> tmp.txt
+	    cat tmp.txt | while read -r line; do
+	    [[ -f ${line} ]] && (header $line '*' && cat "${line}" | less)
+		done
+		rm tmp.txt  # remove the temp file
+	    exit 0
+	    ;;
         c)
             # only y or Y (as y would be used as lowercase) would be true
             # every other option would be false
