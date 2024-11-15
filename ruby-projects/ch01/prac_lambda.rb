@@ -14,3 +14,11 @@ rescue => ex
 ensure
 b.call(6,9,0)
 end
+
+def count_if(data)
+  for d in data do
+    yield 0, d
+    end
+end
+
+puts count_if((1..10).to_a) {|c, x| c += 1 if x % 2 == 0; c}
