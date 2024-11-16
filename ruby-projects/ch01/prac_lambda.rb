@@ -16,9 +16,45 @@ b.call(6,9,0)
 end
 
 def count_if(data)
+  c = 0
   for d in data do
-    yield 0, d
-    end
+   if yield d then
+     p d
+     c+=1
+   end
+  end
+  c
 end
 
-puts count_if((1..10).to_a) {|c, x| c += 1 if x % 2 == 0; c}
+p (count_if((1..10).to_a) {|x| x % 2 == 0})
+p (count_if(('a'..'z').to_a()[0..12]) {|x| x.match(/[aeiou]/)})
+
+class User
+  #attr_reader :username, :password, :password_condfirmation
+ def initialize(username, pass='', pass_confirm='')
+    @username = username
+    @password = pass
+    @pass_confirmation = pass_confirm
+ end
+ def [](key)
+   hash = {username: @username, password: @password, pass_confirm: @pass_confirmation}
+   return hash if hash.has_key?(key)
+ end
+ def to_s
+   "User{username: #{@username}, password: #{@password}, password_confifm: #{@pass_confirmation}}"
+ end
+end
+
+users = {
+  admin: {username: 'admin', password: 'admin', password_confirmation: 'admin'},
+  guest: {username: 'guest', password: 'guest', password_confirmation: ''},
+  user: {username: 'user', password: '', password_confirmation: ''},
+}
+
+users.each { |_, value|
+  p value if value[:password] == value[:password_confirmation]
+}
+
+auser = User.new('user', 'class-user', 'user')
+p auser.to_s
+p auser[:password], auser[:username]
