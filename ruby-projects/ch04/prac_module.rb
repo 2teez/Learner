@@ -16,6 +16,11 @@ end
 
 class Human < Person
   include Attributes
+  class << self
+    def say
+      puts "I am human"
+    end
+  end
 end
 
 p = Human.new
@@ -24,3 +29,25 @@ Attributes.speak
 p.name = 'Java'
 p.age = 34
 puts p.to_s
+
+module Aqua
+  HANDFINS = 8
+  def swim
+    puts "Swimming.."
+    puts "#{HANDFINS}"
+  end
+end
+
+class << p
+    def programmer
+      puts "I am a programmer"
+    end
+end
+
+p.extend(Aqua)
+p.swim
+Human.say
+p.programmer
+
+pp = Human.new
+#pp.programmer
