@@ -51,3 +51,12 @@ p.programmer
 
 pp = Human.new
 #pp.programmer
+
+class Person
+  def ruby_programmer
+    puts self.class.to_s << ' programming in ruby'
+  end
+end
+
+pp.ruby_programmer
+p.ruby_programmer
