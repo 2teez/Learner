@@ -19,7 +19,7 @@ function help_func() {
     echo
     echo "Options are as follows:"
     echo "-s	Displays the git status."
-		echo "-r 	Display the modified file to the saved content."
+		echo "-r 	Display the modified file content which is to be saved."
     echo "-h	Display the help and description of usage."
     echo "-U	<filename>"
     echo "	Update .gitignore file with the named file or document"
