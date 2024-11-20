@@ -19,6 +19,7 @@ function help_func() {
     echo
     echo "Options are as follows:"
     echo "-s	Displays the git status."
+		echo "-r 	Display the modified file to the saved content."
     echo "-h	Display the help and description of usage."
     echo "-U	<filename>"
     echo "	Update .gitignore file with the named file or document"
@@ -59,7 +60,7 @@ while getopts ${option} opt; do
 	r)
 	    # this option shows the status and READ all the file(s)
 	    # that are either staged or are to be stage for commit
-            # read the status and get all the file(s) to check
+      # read the status and get all the file(s) to check
 	    git status --short | awk '{print $2}' >> tmp.txt
 	    cat tmp.txt | while read -r line; do
 	    [[ -f ${line} ]] && (header $line '*' && cat "${line}" | less)
