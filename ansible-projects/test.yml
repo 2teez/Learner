@@ -1,7 +1,0 @@
----
-- hosts: localhost
-  tasks:
-    - name: Run original command
-      debug: msg="Ansible is Fun"
-    - name: We also test connectivity
-      ping:
