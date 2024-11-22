@@ -6,6 +6,10 @@ module IOS
     gets.chomp
   end
 
+  def pln(msg='')
+    cout(msg.to_s << "\n")
+  end
+
   def get_filename(msg)
     filename = cout msg
     until File.exist?(filename) do
@@ -16,10 +20,11 @@ module IOS
   end
 
   alias get_s cout
-  module_function :cout, :get_filename, :get_s
+  module_function :cout, :get_filename, :get_s, :pln
 
 end
 
+# test
 if __FILE__ == $0 then
   filename = IOS.get_filename "Enter filename:"
   puts "Filename entered: #{filename}"
