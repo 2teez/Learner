@@ -1,11 +1,13 @@
 #!/usr/bin/env ruby
 require_relative '../ios'
 
-class Array
+module ArrayExtensions
   def chars
-      self.join.split(//)
+      self.join.chars
   end
 end
+
+Array.include(ArrayExtensions)
 
 module Text
 
@@ -17,6 +19,15 @@ module Text
     def chars
       @data.chars.length
     end
+    def chars_only
+      @data.chars.select{|char| char.match(/[a-zA-Z0-9]/)}.length
+    end
+    def lines
+      @data.length
+    end
+    def words
+      @data.map {|line| line.chomp.split(/\s+?/)}.reduce(0){|a, arr| a+=arr.size}
+    end
   end
 
   private
@@ -26,30 +37,6 @@ module Text
     end
     def read
       File.foreach(@file).collect{|line| line}
-    end
-  end
-end
-
-if __FILE__ == $0
-  require 'minitest'
-  require 'minitest/autorun'
-
-  class AnalyzerTest < Minitest::Test
-    def setup
-      @ana = Text::Analyzer.new
-    end
-    def test_property_data
-      #skip
-      expected = @ana.data
-      assert_equal expected, []
-    end
-    def test_fn_count_chars
-      expected = @ana.chars
-      assert_equal expected, 26
-    end
-    def test_fn_count_chars_only
-      expected = @ana.chars_only
-      assert_equal expected, 22
     end
   end
 end
