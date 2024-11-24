@@ -1,3 +1,5 @@
 hello, wired
 hello, world
-good bye, wicked world!
+good bye!, wicked world!
+
+Welcome to new life and world.
