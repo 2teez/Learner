@@ -37,4 +37,9 @@ class AnalyzerTest < Minitest::Test
     expected = @ana.words
     assert_equal expected, 8
   end
+
+  def test_fn_sentence_count
+    expected = @ana.sentence
+    assert_equal expected, 2
+  end
 end
