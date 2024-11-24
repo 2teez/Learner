@@ -14,19 +14,34 @@ module Text
   class Analyzer
     attr_reader :data
     def initialize
-      @data = FileReader.new.read ||= []
+      @data     = FileReader.new.read
+      @filename, @content  = @data[:filename], @data[:content]
     end
     def chars
-      @data.chars.length
+      @content.chars.length
     end
     def chars_only
-      @data.chars.select{|char| char.match(/[a-zA-Z0-9]/)}.length
+      @content.chars.select{|char| char.match(/[a-zA-Z0-9]/)}.length
     end
     def lines
-      @data.length
+      @content.length
     end
     def words
-      @data.map {|line| line.chomp.split(/\s+?/)}.reduce(0){|a, arr| a+=arr.size}
+      @content.map {|line| line.chomp.split(/\s+?/)}.reduce(0){|a, arr| a+=arr.size}
+    end
+    def sentence
+      @content.each{|line| line.chomp}.select{|line| line.match(/[.?!]/)}.count
+    end
+
+    def to_s
+      <<~"EOF"
+        STATISTICS FOR FILE: #{@filename} is as follows:
+        Character Count:                    #{chars}
+        Character Count (excluding spaces): #{chars_only}
+        Line Count:                         #{lines}
+        Word Count:                         #{words}
+        Sentence Count:                     #{sentence}
+      EOF
     end
   end
 
@@ -36,7 +51,7 @@ module Text
       @file = IOS.get_filename("Enter a filename: ")
     end
     def read
-      File.foreach(@file).collect{|line| line}
+      {filename: @file, content: File.foreach(@file).to_a}
     end
   end
 end
