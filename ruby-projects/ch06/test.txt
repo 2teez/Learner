@@ -1,2 +1,3 @@
 hello, wired
 hello, world
+good bye, wicked world!
