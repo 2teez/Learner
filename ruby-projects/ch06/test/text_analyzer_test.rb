@@ -42,4 +42,9 @@ class AnalyzerTest < Minitest::Test
     expected = @ana.sentence
     assert_equal expected, 2
   end
+
+  def test_fn_paragraph_count
+    expected = @ana.paragraph
+    assert_equal expected, 2
+  end
 end
