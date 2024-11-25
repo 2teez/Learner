@@ -23,14 +23,20 @@ module Text
     def chars_only
       @content.chars.select{|char| char.match(/[a-zA-Z0-9]/)}.length
     end
+    def _joiner
+      @content.join
+    end
     def lines
-      @content.length
+      _joiner.split(/\n/).length
     end
     def words
-      @content.map {|line| line.chomp.split(/\s+?/)}.reduce(0){|a, arr| a+=arr.size}
+      _joiner.split(/\s+/).length
     end
     def sentence
-      @content.each{|line| line.chomp}.select{|line| line.match(/[.?!]/)}.count
+      _joiner.split(/\.|\!|\?/).length
+    end
+    def paragraph
+      _joiner.split(/\n\n/).length
     end
 
     def to_s
@@ -41,8 +47,10 @@ module Text
         Line Count:                         #{lines}
         Word Count:                         #{words}
         Sentence Count:                     #{sentence}
+        Paragraph Count:                    #{paragraph}
       EOF
     end
+    private :_joiner
   end
 
   private
