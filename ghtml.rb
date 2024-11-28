@@ -16,9 +16,11 @@ Range.include(ArrayExtensions)
 
 def helper
   puts <<~"HELP"
-    Usage #{__FILE__} <files> [--standalone-php | -r] | --help
+    Usage #{__FILE__} <files> [--set-title | --standalone-php | -r] | --help
     files:              name of files to be generated
     options:
+      --set-title   : to get customized title. if this is stated you can't use
+                        --standalone-php or vice-versa
       --standalone-php: to generate standalone php file.
       -r              : to run in file test. Using minitest.
       --help          : to display the help option.
@@ -53,11 +55,15 @@ def html_tags(title='Changed Title')
   HTML_TAG
 end
 
+# get file_options and filenames
+# use those as global variables
+$file_options, $files = ARGV.select {|value| value.start_with?('-')}.to_a,
+                        ARGV.reject {|value| value.start_with?('-')}
 
 def make_file(filename, template_tag='')
   unless File.exist?(filename) && !File.zero?(filename) then
     file = File.open(filename, 'w')
-      if ARGV.include?('--standalone-php') && filename.end_with?('.php') then
+      if $file_options.include?('--standalone-php') && filename.end_with?('.php') then
         file.write("<?php \n //include __DIR__ . ''")
       else
         file.write template_tag
@@ -68,19 +74,18 @@ def make_file(filename, template_tag='')
 end
 
 # check to see if I want the script to run test
-if !ARGV.include?('-r') then
-#for filename in ARGV
-  #next if filename.start_with?('-')
-  title = get_title() \
-  if (ARGV.include?('--state-title') && !ARGV.include?('--standalone-php'))
-
-    make_file(ARGV[0], html_tags(title))
+if !$file_options.include?('-r') then
+  for filename in $files do
+    title = get_title() \
+          if ($file_options.include?('--set-title') && !$file_options.include?('--standalone-php'))
+    make_file(filename, html_tags(title))
+  end
   exit
-  #end
 end
 
-# remove the the option that start with `-`
-ARGV = ARGV.join('::').gsub(/-..?/, '').split('::')
+# overwrite the CLI-ARGV array with only files
+# and that to be used by minitest
+ARGV = $files
 
 if __FILE__ == $0 then
   require 'minitest'
@@ -103,6 +108,9 @@ if __FILE__ == $0 then
     def test_array_extension
       expected = puts ('a'..'e').to_a.join
       assert_nil expected, ('a'..'e').to_a.p
+    end
+    def test_get_title
+      assert_equal get_title, 'Test Php'
     end
     def test_make_file
       expected = make_file @file, '<?php?>'
