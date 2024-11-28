@@ -16,7 +16,7 @@ Range.include(ArrayExtensions)
 
 def helper
   puts <<~"HELP"
-    Usage #{__FILE__} <files> [--set-title | --standalone-php | -r] | --help
+    Usage #{__FILE__} <files> [--set-title | --standalone-php] | -r | --help
     files:              name of files to be generated
     options:
       --set-title   : to get customized title. if this is stated you can't use
