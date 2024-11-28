@@ -30,13 +30,18 @@ if ARGV.length == 0 || ARGV[0] == '--help' then
   exit
 end
 
-def html_tags
+def get_title(msg='Enter title: ')
+  print "#{msg.capitalize}"
+  $stdin.gets.chomp.split.each{|w|w.capitalize!}.join(' ')
+end
+
+def html_tags(title='Changed Title')
   <<~"HTML_TAG"
   <!DOCTYPE html>
       <html lang="en">
           <head>
               <meta charset="utf-8">
-              <title>Changed Title</title>
+              <title>#{title}</title>
           </head>
           <body>
               <p>
@@ -66,7 +71,10 @@ end
 if !ARGV.include?('-r') then
 #for filename in ARGV
   #next if filename.start_with?('-')
-  make_file ARGV[0], html_tags
+  title = get_title() \
+  if (ARGV.include?('--state-title') && !ARGV.include?('--standalone-php'))
+
+    make_file(ARGV[0], html_tags(title))
   exit
   #end
 end
