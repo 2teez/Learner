@@ -35,3 +35,13 @@ end
 
 java = Human.new('james', 'gosling', 23)
 puts java, java.speak
+
+class Cat < Animal
+  include Attributes
+  def speak
+    puts "meow.."
+  end
+end
+
+lion = Cat.new('cat', 23)
+puts lion, lion.speak
