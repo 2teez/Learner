@@ -16,18 +16,21 @@ Range.include(ArrayExtensions)
 
 def helper
   puts <<~"HELP"
-    Usage #{__FILE__} <files> [--set-title | --standalone-php] | -r | --help
+    Usage #{__FILE__} <files> [--set-css | --set-css-ext]
+                              [--set-title | --standalone-php] | -r | --help
     files:              name of files to be generated
     options:
-      --set-title   : to get customized title. if this is stated you can't use
+      --set-title     : to get customized title. if this is stated you can't use
                         --standalone-php or vice-versa
+      --set-css       : to include internal css file and external script
+      --set-css-ext   : to include external css file and external script
       --standalone-php: to generate standalone php file.
       -r              : to run in file test. Using minitest.
       --help          : to display the help option.
   HELP
 end
 
-if ARGV.length == 0 || ARGV[0] == '--help' then
+if ARGV.length == 0 || ARGV[0] == '--help'|| ARGV.include?('--help') then
   helper
   exit
 end
@@ -37,12 +40,27 @@ def get_title(msg='Enter title: ')
   $stdin.gets.chomp.split.each{|w|w.capitalize!}.join(' ')
 end
 
-def html_tags(title='Changed Title')
-  <<~"HTML_TAG"
+def html_tags(title='Changed Title',style_script = :false)
+  # set the style and script tags in the head html tag
+  style_script_tag = {style:'', script:''}
+  style_script_tag = {link:'', script:''} if style_script == :falsy
+  style_script = (style_script == :true || style_script == :falsy) ? style_script_tag
+    .map{ |key, value|
+      if key == :link
+        "<!--#{key} rel= href=-->"
+      elsif key == :script
+        "<!--#{key} src=>#{value}</#{key}-->"
+      else
+        "<!--#{key}>#{value}</#{key}-->"
+      end
+    } : ''
+<<~"HTML_TAG"
   <!DOCTYPE html>
       <html lang="en">
           <head>
               <meta charset="utf-8">
+              #{style_script[0]}
+              #{style_script[1]}
               <title>#{title}</title>
           </head>
           <body>
@@ -77,8 +95,14 @@ end
 if !$file_options.include?('-r') then
   for filename in $files do
     title = get_title() \
-          if ($file_options.include?('--set-title') && !$file_options.include?('--standalone-php'))
-    make_file(filename, html_tags(title))
+        if ($file_options.include?('--set-title') && !$file_options.include?('--standalone-php'))
+    if $file_options.include?('--set-css')
+      make_file(filename, html_tags(title, :true))
+    elsif $file_options.include?('--set-css-ext')
+      make_file(filename, html_tags(title, :falsy))
+    else
+      make_file(filename, html_tags(title))
+    end
   end
   exit
 end
