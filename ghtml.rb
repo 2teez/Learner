@@ -100,6 +100,10 @@ if !$file_options.include?('-r') then
       make_file(filename, html_tags(title, :true))
     elsif $file_options.include?('--set-css-ext')
       make_file(filename, html_tags(title, :falsy))
+      # make an external css file with the filename
+      filename = filename + '.css'
+      File.open(filename, 'w').puts('//css file')
+      puts "You also have a css file namely: #{filename} for free!"
     else
       make_file(filename, html_tags(title))
     end
