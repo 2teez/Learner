@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'byebug'
 
 module Exts
   def or(value) 
@@ -17,6 +18,7 @@ module Exts
   end
 end
 
+#byebug
 
 include Exts
 
