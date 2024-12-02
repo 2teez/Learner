@@ -17,16 +17,18 @@ Range.include(ArrayExtensions)
 def helper
   puts <<~"HELP"
     Usage #{__FILE__} <files> [--set-css | --set-css-ext]
-                              [--set-title | --standalone-php] | -r | --help
+                              [--set-title | --standalone-php] |
+                              [--create-file-by-force] | -r | --help
     files:              name of files to be generated
     options:
-      --set-title     : to get customized title. if this is stated you can't use
-                        --standalone-php or vice-versa
-      --set-css       : to include internal css file and external script
-      --set-css-ext   : to include external css file and external script
-      --standalone-php: to generate standalone php file.
-      -r              : to run in file test. Using minitest.
-      --help          : to display the help option.
+      --create-file-by-force: deletes and recreate file if exists.
+      --set-title           : to get customized title. if this is stated you can't use
+                                --standalone-php or vice-versa
+      --set-css             : to include internal css file and external script
+      --set-css-ext         : to include external css file and external script
+      --standalone-php      : to generate standalone php file.
+      -r                    : to run in file test. Using minitest.
+      --help                : to display the help option.
   HELP
 end
 
@@ -87,13 +89,16 @@ def make_file(filename, template_tag='')
         file.write template_tag
       end
       file.close
-    else puts "No operation carried out."
+    else puts "No operation carried out."; exit
   end
 end
 
 # check to see if I want the script to run test
 if !$file_options.include?('-r') then
   for filename in $files do
+    # delete && recreate a file if it exists
+    File.delete filename if File.exist?(filename) && \
+      $file_options.include?('--create-file-by-force')
     title = get_title() \
         if ($file_options.include?('--set-title') && !$file_options.include?('--standalone-php'))
     if $file_options.include?('--set-css')
