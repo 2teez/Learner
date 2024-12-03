@@ -33,7 +33,7 @@ fi
 file=$(basename "$file_to_link")
 if [[ -L "$link_to_directory/$file" ]]; then
     echo "Warning: Link '$link_to_directory/$file' already exists."
-    ex
+    exit 1
 fi
 
 #link the file as the user wanted
