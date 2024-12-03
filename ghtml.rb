@@ -62,8 +62,8 @@ def html_tags(title='Changed Title',style_script = :false)
       <meta charset="utf-8">
           <head>
             <title>#{title}</title>
-              #{style_script.first}
-              #{style_script.last}
+              #{style_script[0]}
+              #{style_script[1]}
           </head>
           <body>
               <p>
