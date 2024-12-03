@@ -89,7 +89,7 @@
                     <thead>
                         <td>Item</td>
                         <td>Quantity</td>
-                    <thead>
+                    </thead>
                     <tbody>
                         <tr>
                             <td><label for="tires">Tires</label></td>
