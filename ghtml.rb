@@ -59,7 +59,7 @@ def html_tags(title='Changed Title',style_script = :false)
 <<~"HTML_TAG"
   <!DOCTYPE html>
       <html lang="en">
-      <meta charset="utf-8">
+      <meta charset="utf-8" />
           <head>
             <title>#{title}</title>
               #{style_script[0]}
