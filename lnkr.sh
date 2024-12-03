@@ -29,10 +29,15 @@ elif ! [[ -d "$link_to_directory" ]]; then
     link_to_directory=$(readlink -f "${2}")
 fi
 
-#link the file as the user wanted
+# check if the link already exists in target directory
 file=$(basename "$file_to_link")
-ln -s "$file_to_link" "$link_to_directory/$file"
+if [[ -L "$link_to_directory/$file" ]]; then
+    echo "Warning: Link '$link_to_directory/$file' already exists."
+    ex
+fi
 
+#link the file as the user wanted
+ln -s "$file_to_link" "$link_to_directory/$file"
 echo "Created: $link_to_directory/$file @ $(date)"
 
 exit 0
