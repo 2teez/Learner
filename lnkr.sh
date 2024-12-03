@@ -33,6 +33,6 @@ fi
 file=$(basename "$file_to_link")
 ln -s "$file_to_link" "$link_to_directory/$file"
 
-echo "Created: $link_to_directory/$file"
+echo "Created: $link_to_directory/$file @ $(date)"
 
 exit 0
