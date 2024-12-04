@@ -9,6 +9,7 @@
           />
             <style>
                 body {
+                    background-color: rgb(120, 150, 200);
                     font-family: "Varela Round", Baskerville, serif;
                     font-size: 2.5em;
                     max-width: 800px;
@@ -84,7 +85,7 @@
         </head>
         <body>
             <div class="container">
-                <form action="cust_order.php" method="post">
+                <form action="" method="post">
                 <table>
                     <thead>
                         <td>Item</td>
