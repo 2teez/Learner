@@ -32,10 +32,12 @@
                   box-shadow: -4px 4px 3px rgba(255, 255, 255, .5);
               }
               h1 strong {
-                  font-family: "Varela Round", "Arial Black", serif;
+                  font-family: "Arial Black", sans-serif;
                   font-size: 2.5em;
                   color: #ffffff;
                   text-shadow: -4px 4px 3px rgba(0, 0, 0, .8);
+                  line-height: 1em;
+                  margin-right: -0.7em;
               }
               h2 {
                   font-family: "Varela Round", "Arial Black", serif;
