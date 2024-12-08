@@ -9,4 +9,7 @@ name = "main"
 [[bin]]
 name = "main2"
 
+[[bin]]
+name = "main3"
+
 [dependencies]
