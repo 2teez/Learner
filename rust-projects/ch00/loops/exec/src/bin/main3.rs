@@ -2,7 +2,7 @@
 
 fn main() {
     const DAYS_OF_CHRISTMAS: [&str; 12] = [
-        "first", "second", "third", "forth", "fifth", "sixth", "seventh", "eighth", "ninth",
+        "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth",
         "tenth", "eleventh", "twelveth",
     ];
     for day in DAYS_OF_CHRISTMAS {
