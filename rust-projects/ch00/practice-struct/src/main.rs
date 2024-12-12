@@ -9,6 +9,12 @@ struct Person {
 #[derive(Debug)]
 struct Colour(u32, u32, u32);
 
+#[derive(Debug, Default)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
 fn main() {
     let raw_p = Person {
         name: "java".to_owned(),
@@ -20,6 +26,24 @@ fn main() {
 
     let color = Colour(154, 200, 105);
     println!("{:#?}", color);
+    // using ordinary tuple
+    let ocolor: (u32, u32, u32) = (154, 200, 105);
+    println!("{:#?}", ocolor);
+    //comparing ordinary variable tuple with struct tuple not the same
+    //println!("{:?} <=> {}", color, ocolor == color);
+
+    let rect = Rectangle {
+        width: 34,
+        height: 13,
+    };
+    println!("Area: {}, Rectangle {:?}", calculate_area(&rect), rect);
+    let rect2 = dbg!(Rectangle { ..rect });
+    println!("Area: {}, Rectangle {:?}", calculate_area(&rect2), rect);
+    dbg!(&rect);
+}
+
+fn calculate_area(rect: &Rectangle) -> u32 {
+    rect.width * rect.height
 }
 
 fn new_person(name: &str, age: u32) -> Person {
