@@ -15,6 +15,12 @@ struct Rectangle {
     height: u32,
 }
 
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
 fn main() {
     let raw_p = Person {
         name: "java".to_owned(),
@@ -40,6 +46,7 @@ fn main() {
     let rect2 = dbg!(Rectangle { ..rect });
     println!("Area: {}, Rectangle {:?}", calculate_area(&rect2), rect);
     dbg!(&rect);
+    println!("Area from rectanglar impl: {}", rect.area());
 }
 
 fn calculate_area(rect: &Rectangle) -> u32 {
