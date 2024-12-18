@@ -3,4 +3,10 @@ name = "practice-err"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "main2"
+
+[[bin]]
+name = "main3"
+
 [dependencies]
