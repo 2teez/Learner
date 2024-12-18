@@ -7,5 +7,9 @@ edition = "2021"
 name = "main2"
 version = "0.0.1"
 
+[[bin]]
+name = "main3"
+version = "0.0.1"
+
 [dependencies]
 rand = "^0.8.5"
