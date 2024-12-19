@@ -7,7 +7,7 @@ fn get_value<T: Clone>(v: &Vec<T>, index: usize) -> T {
     }
 }
 
-fn make_vecs(ar: &[u32; 5]) -> Vec<u32> {
+fn make_vecs(ar: &[u32]) -> Vec<u32> {
     let mut v = Vec::new();
     for elem in ar {
         v.push(*elem);
@@ -27,6 +27,7 @@ fn starts_with_vowel(wrd: &str) -> bool {
 
 pub fn gets(msg: &str) -> String {
     use std::io;
+    print!("{}", msg);
     let mut line = String::new();
     io::stdin()
         .read_line(&mut line)
@@ -54,8 +55,8 @@ mod tests {
 
     #[test]
     fn vec_get_value() {
-        let v = make_vecs(&[5, 8, 3, 1, 7]);
-        for index in 0..5 {
+        let v = make_vecs(&[8, 3, 1, 7]);
+        for index in 0..4 {
             assert_eq!(get_value(&v, index), *&v[index]);
         }
     }
