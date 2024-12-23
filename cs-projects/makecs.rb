@@ -10,9 +10,16 @@ end
 get_help()
 
 if ARGV[0] == "create"
-  `dotnet new console -n #{ARGV[1]}`
+  filename = "#{ARGV[1]}"
+  Dir.new(".").each do |file|
+    if file == filename
+      puts "#{filename} project exits."
+      exit
+    end
+  end
+  `dotnet new console -n #{filename}`
 elsif ARGV[0] == "clean"
-  `rm -rf #{ARGV[1]}/bin/`
+  `rm -rf #{filename}`
 else
   puts "#{ARGV[0]} can either be `create` or `clean`"
 end
