@@ -1,0 +1,15 @@
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/bin/Debug/net9.0/MethodDemo2
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/bin/Debug/net9.0/MethodDemo2.deps.json
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/bin/Debug/net9.0/MethodDemo2.runtimeconfig.json
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/bin/Debug/net9.0/MethodDemo2.dll
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/bin/Debug/net9.0/MethodDemo2.pdb
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/obj/Debug/net9.0/MethodDemo2.GeneratedMSBuildEditorConfig.editorconfig
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/obj/Debug/net9.0/MethodDemo2.AssemblyInfoInputs.cache
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/obj/Debug/net9.0/MethodDemo2.AssemblyInfo.cs
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/obj/Debug/net9.0/MethodDemo2.csproj.CoreCompileInputs.cache
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/obj/Debug/net9.0/MethodDemo2.sourcelink.json
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/obj/Debug/net9.0/MethodDemo2.dll
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/obj/Debug/net9.0/refint/MethodDemo2.dll
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/obj/Debug/net9.0/MethodDemo2.pdb
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/obj/Debug/net9.0/MethodDemo2.genruntimeconfig.cache
+/Users/timothyadigun/prac/genPrac/cs-projects/ch00/MethodDemo2/obj/Debug/net9.0/ref/MethodDemo2.dll
