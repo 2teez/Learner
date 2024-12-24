@@ -58,8 +58,7 @@ while getopts ${options} opt; do
             done
             ;;
         h) help && exit1;;
-        *) echo "wrong option $opt used. Use on -c or -cl"
-            exit 1;;
+        *) help && exit1;;
     esac
 done
 
