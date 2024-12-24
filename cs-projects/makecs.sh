@@ -33,14 +33,18 @@ while getopts ${options} opt; do
             dotnet build "${OPTARG}"
             ;;
         r)
-            directory=$(dirname "$OPTARG/bin")
-            file=$(basename "$OPTARG/bin")
-            filefound=$(ls -r "${directory}" | grep "${file}")
-            if [[ -z "$filefound" ]];then
-                echo "No \"$OPTARG\" project was found." && exit 0
+            directory1=$(dirname "$OPTARG/bin")
+            directory2=$(dirname "$OPTARG/obj")
+            file1=$(basename "$OPTARG/bin")
+            file2=$(basename "$OPTARG/obj")
+            filefound1=$(ls -r "${directory1}" | grep "${file1}")
+            filefound2=$(ls -r "${directory2}" | grep "${file2}")
+            if [[ -z "$filefound1" ]] || [[ -z "$filefound2" ]];then
+                echo "Neither \"$OPTARG/bin\" nor \"$OPTARG/obj\" folders were found." && exit 0
             fi
-            echo "Deleted csharp project namely: ${OPTARG}/bin"
+            echo "Deleted csharp project namely: ${OPTARG}/bin && ${OPTARG}/obj"
             rm -rf "${OPTARG}/bin"
+            rm -rf "${OPTARG}/obj"
             ;;
         n)
             filefound=$(ls | grep "$OPTARG")
