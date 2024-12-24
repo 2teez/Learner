@@ -3,8 +3,9 @@
 #description: create and clean csharp files
 
 function help() {
-    echo "Usage: ./$(basename $0) -h | -c|-r|-n <filename>"
+    echo "Usage: ./$(basename $0) -h | -b|-c|-r|-n <filename>"
     echo "options:"
+    echo "-b    build and run project name"
     echo "-c    create project name"
     echo "-r    remove project bin folder"
     echo "-n    remove the entire project folder"
@@ -16,9 +17,16 @@ if [[ $# -ne 2 ]]; then
     exit 1
 fi
 
-options="c:r:n:"
+options="c:r:n:b:"
 while getopts ${options} opt; do
     case $opt in
+        b) if [[ -e "${OPTARG}" ]]; then
+               cd "${OPTARG}"
+               dotnet run
+            elif [[ $(basename "${file}") == "${OPTARG}" ]]; then
+                dotnet run
+            fi
+            ;;
         c)
             echo "Creating csharp project namely: ${OPTARG}"
             dotnet new console -n "${OPTARG}"
