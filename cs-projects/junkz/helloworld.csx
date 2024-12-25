@@ -1,5 +1,5 @@
 
-Console.WriteLine("Hello, World!");
+System.Console.WriteLine("Hello, World!");
 readFile(readString("Enter a filename: "));
 
 void readFile(string filename) {
