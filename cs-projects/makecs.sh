@@ -11,7 +11,7 @@ function help() {
     echo "-n    remove the entire project folder"
     echo "-h    display the help function"
     echo "-s    run a c# script. The script can have either .csx or .cs file extension."
-    echo "-m    maanually compiling and running a c# standalone file"
+    echo "-m    manually compiling and running a c# standalone file"
 }
 
 if [[ $# -ne 2 ]]; then
