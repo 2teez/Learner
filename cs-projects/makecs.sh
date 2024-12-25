@@ -3,13 +3,15 @@
 #description: create and clean csharp files
 
 function help() {
-    echo "Usage: ./$(basename $0) -h | -b|-c|-r|-n <filename>"
+    echo "Usage: ./$(basename $0) -h | -b|-c|-r|-n|-s|-m <filename>"
     echo "options:"
     echo "-b    build and run project name"
     echo "-c    create project name"
     echo "-r    remove project bin folder"
     echo "-n    remove the entire project folder"
     echo "-h    display the help function"
+    echo "-s    run a c# script. The script can have either .csx or .cs file extension."
+    echo "-m    maanually compiling and running a c# standalone file"
 }
 
 if [[ $# -ne 2 ]]; then
@@ -17,7 +19,7 @@ if [[ $# -ne 2 ]]; then
     exit 1
 fi
 
-options="c:r:n:b:"
+options="c:r:n:b:s:m:"
 while getopts ${options} opt; do
     case $opt in
         b) if [[ -e "${OPTARG}" ]]; then
@@ -61,6 +63,13 @@ while getopts ${options} opt; do
                 fi
             done
             ;;
+        s)  # compiling and runing c# script
+            dotnet-script "${OPTARG}"
+            ;;
+        m)  # compile and generate executable file
+            csc "${OPTARG}" && mono "${OPTARG%.*}.exe"
+            # remove the executable file after running it
+            rm -rf "${OPTARG%.*}.exe";;
         h) help && exit1;;
         *) help && exit1;;
     esac
