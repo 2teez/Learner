@@ -17,6 +17,7 @@ class TestShapes
         circle.Radius = 2.5;
         Console.WriteLine(circle.Radius);
         Console.WriteLine(circle);
+        circle.PrintProperties();
     }
 
     static void PrintShapes(Shape shape)
@@ -29,7 +30,7 @@ interface IShape
 {
     double Area();
     double Perimeter();
-    void PrintProperties()
+    virtual void PrintProperties()
     {
         Console.Write("From interface... ~>");
         Console.WriteLine(
@@ -113,6 +114,8 @@ class Circle : Shape
 
     public void PrintProperties()
     {
-        Console.WriteLine($"{this.GetType().Name}");
+        Console.Write("From implmentation... ~>");
+        Console.WriteLine(
+        $"{this.GetType().Name} {{Area: {this.Area():#.00}, Perimeter: {this.Perimeter():#.##}}}");
     }
 }
