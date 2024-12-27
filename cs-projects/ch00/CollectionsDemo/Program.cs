@@ -13,7 +13,7 @@ class CollectionsTest
         {
             names.Add(line);
         }
-        PrintArrayList(names);
+        PrintArrayList(/*ref*/ names);
     }
 
     static string getString(string msg = "Enter a value: ")
@@ -35,7 +35,7 @@ class CollectionsTest
         return line;
     }
 
-    static void PrintArrayList(ArrayList list)
+    static void PrintArrayList(/*ref*/ ArrayList list)
     {
         for (int i = 0; i < list.Count; i++)
         {
