@@ -1,4 +1,5 @@
 using System.Collections;
+using Collect;
 
 class CollectionsTest
 {
@@ -14,6 +15,12 @@ class CollectionsTest
             names.Add(line);
         }
         PrintArrayList(/*ref*/ names);
+        // using my class person from collect module
+        var collect = new ArrayList();
+        collect.Add(new Customer(item: "7up", price: 1.56m));
+        collect.Add(new Customer(item: "Carmel-Chocolate", price: 1.85m));
+        PrintArrayList(collect);
+        Console.WriteLine(((Customer)collect[0]).GetItem);
     }
 
     static string getString(string msg = "Enter a value: ")
