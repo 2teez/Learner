@@ -10,6 +10,13 @@ class TestShapes
             shapes[i].PrintProperties();
             PrintShapes((Shape)shapes[i]);
         }
+
+        var circle = new Circle();
+        Console.WriteLine(circle.Radius);
+        Console.WriteLine(circle);
+        circle.Radius = 2.5;
+        Console.WriteLine(circle.Radius);
+        Console.WriteLine(circle);
     }
 
     static void PrintShapes(Shape shape)
@@ -36,7 +43,7 @@ abstract class Shape : IShape
     public abstract double Perimeter();
     public override string ToString()
     {
-        return $" {this.GetType().Name} {{Area: {this.Area():#.00}, Perimeter: {this.Perimeter():#.##}}}";
+        return $"{this.GetType().Name} {{Area: {this.Area():##.00}, Perimeter: {this.Perimeter():0#.##}}}";
     }
 }
 
@@ -78,6 +85,19 @@ sealed class Square : Rectangle
 class Circle : Shape
 {
     private double radius;
+
+    public double Radius
+    {
+        get
+        {
+            return radius;
+        }
+        set
+        {
+            if (value < 0) value = 1.25;
+            radius = value;
+        }
+    }
     private const double PI = 22.0 / 7.0;
 
     public Circle(double radius)
