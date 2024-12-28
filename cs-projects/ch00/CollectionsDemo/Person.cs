@@ -10,13 +10,11 @@ namespace Collect
             this.item = new Item(item: item, price: price);
         }
         public Customer(string item = "", decimal price = 0) : this("", 0, item, price) { }
-        public Item GetItem
-        {
-            get => this.item;
-        }
+        public string GetItem => this.item.ToString();
+
         public override string ToString() => $"{this.cust} - {this.item}";
 
-        public class Item
+        class Item
         {
             private string item;
             private decimal price;
