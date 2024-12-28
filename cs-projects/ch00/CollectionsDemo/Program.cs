@@ -21,9 +21,6 @@ class CollectionsTest
         collect.Add(new Customer(item: "Carmel-Chocolate", price: 1.85m));
         PrintArrayList(collect);
         Console.WriteLine(((Customer)collect[0]).GetItem);
-
-        //var item = new Customer.Item(item: "Coke", price: 2.95m);
-        //Console.WriteLine(item);
     }
 
     static string getString(string msg = "Enter a value: ")
