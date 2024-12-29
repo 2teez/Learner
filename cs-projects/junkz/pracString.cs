@@ -9,6 +9,16 @@ class PracticeString
         var line = GetString();
         Console.WriteLine(ReverseString(line));
         Console.WriteLine(ReverseWords(line));
+        Console.WriteLine(QuoteWord("hello every today is 29th"));
+    }
+    static string QuoteWord(string str, char separator = ' ')
+    {
+        var sb = new StringBuilder();
+        foreach (var word in str.Split(separator))
+        {
+            sb.Append($"\"{word}\" ");
+        }
+        return sb.ToString();
     }
     static string ReverseWords(string str, char separator = ' ')
     {
