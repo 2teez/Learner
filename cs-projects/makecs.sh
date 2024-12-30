@@ -3,7 +3,7 @@
 #description: create and clean csharp files
 
 function help() {
-    echo "Usage: ./$(basename $0) -h | -b|-c|-r|-n|-s|-m <filename>"
+    echo "Usage: ./$(basename $0) -h | -b|-c|-r|-n|-s|-m|-l <filename>"
     echo "options:"
     echo "-b    build and run project name"
     echo "-c    create project name"
@@ -12,6 +12,7 @@ function help() {
     echo "-h    display the help function"
     echo "-s    run a c# script. The script can have either .csx or .cs file extension."
     echo "-m    manually compiling and running a c# standalone file"
+    echo "-l    create a library project folder and link with the project to use it."
 }
 
 if [[ $# -ne 2 ]]; then
@@ -19,7 +20,7 @@ if [[ $# -ne 2 ]]; then
     exit 1
 fi
 
-options="c:r:n:b:s:m:"
+options="c:r:n:b:s:m:l:"
 while getopts ${options} opt; do
     case $opt in
         b) if [[ -e "${OPTARG}" ]]; then
@@ -65,6 +66,25 @@ while getopts ${options} opt; do
             ;;
         s)  # compiling and runing c# script
             dotnet-script "${OPTARG}"
+            ;;
+        l)  # create class library
+            dotnet new classlib -n "${OPTARG}"
+            echo -n "Enter the name of the Project to include the library: "
+            while read -r line; do
+                # find the project entered
+                findproject=$(ls | grep "${line}")
+                if [[ -z "${findproject}" ]]; then
+                    echo "Run $(basename $0) -c ${line}"
+                    echo "To create the project first then run this command to make a library."
+                    rm -rf "${OPTARG}"
+                    exit 1
+                else
+                    projdirectory="${line}"
+                    cd "$projdirectory"
+                    dotnet add reference ../"${OPTARG}"/"${OPTARG}.csproj"
+                    exit 0;
+                fi
+            done
             ;;
         m)  # compile and generate executable file
             csc "${OPTARG}" && mono "${OPTARG%.*}.exe"
