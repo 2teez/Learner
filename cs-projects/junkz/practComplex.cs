@@ -1,11 +1,21 @@
 using System;
 
-var cx = Complex.GetInstance(1, 2);
-var cx2 = Complex.GetInstance();
-Console.WriteLine($"{cx} - {cx2} => {cx + cx2}");
 
-nampspace Cmplx
+class CmplxTest
 {
+    static void Main(string[] args)
+    {
+        var cx = Complex.GetInstance(1, 2);
+        var cx2 = Complex.GetInstance();
+        var cx4 = cx + cx2;
+        Console.WriteLine($"{cx} - {cx2} => {cx + cx2}");
+        var cx3 = Complex.GetInstance(2, 5);
+        Console.WriteLine($"{cx2} - {cx3} => {cx2 + cx3}, => {cx3 + cx4}");
+    }
+}
+
+
+
 class Complex
 {
     private int real;
@@ -29,5 +39,4 @@ class Complex
         new Complex(cmplx1.real - cmplx2.real, cmplx1.img - cmplx2.img);
 
     public override string ToString() => $"Complex(Real: {real}, Imag: {img}i)";
-}
 }
