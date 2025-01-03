@@ -11,10 +11,39 @@ class CmplxTest
         Console.WriteLine($"{cx} - {cx2} => {cx + cx2}");
         var cx3 = Complex.GetInstance(2, 5);
         Console.WriteLine($"{cx2} - {cx3} => {cx2 + cx3}, => {cx3 + cx4}");
+        //////
+        int[,] arr = { { 4, 8 }, { 1, 3 }, { 16, 32 } };
+        Print2DArray(arr);
+        int[][] arrJagged = { new int[] { 5, 9 },
+                              new int[] { 1, 6, 21 },
+                              new int[] { 90 },
+                              new int[] { 1, 3, 6, 2 } };
+        Print2DJagged(arrJagged);
+    }
+
+    static void Print2DJagged(int[][] arr)
+    {
+        foreach (var row in arr)
+        {
+            foreach (var elem in row)
+            {
+                Console.Write($"{elem,5} ");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static void Print2DArray(int[,] arr)
+    {
+        for (int row = 0; row < arr.GetLength(0); row++)
+        {
+            for (int col = 0; col < arr.GetLength(1); col++)
+            {
+                Console.WriteLine(arr[row, col]);
+            }
+        }
     }
 }
-
-
 
 class Complex
 {
