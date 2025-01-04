@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Collections.Generic;
 
 var arr = new int[5];
@@ -19,6 +20,10 @@ GetArray(ref arr, resize: true, size: 50);
 PrintEnumerables(from value in arr orderby value select value, "Sorted Values: ");
 PrintEnumerables(from elem in arr where (0 == elem % 2) orderby elem select elem,
     "Sorted Values, Values are Even number:");
+
+////
+//PrintEnumerables(
+Linqify.Linqified("from value in arr", "orderby value", "select value");
 
 void GetArray(ref int[] arr, bool resize = false, int size = 10)
 {
@@ -40,4 +45,26 @@ void PrintEnumerables(IEnumerable<int> arr, string msg = "Values to Print:")
         Console.Write($"{elem,3}");
     }
     Console.WriteLine();
+}
+
+struct Linqify
+{
+    private string statement;
+    private string condition;
+    private string expression;
+    private Linqify(string statement, string condition, string expression)
+    {
+        this.statement = statement;
+        this.condition = condition;
+        this.expression = expression;
+    }
+
+    public static IEnumerable<int> Linqified(string statement = "from value in values",
+         string condition = "", string expression = "select value", string msg = "Display Values: ")
+    {
+        Console.WriteLine(msg);
+        var obj = new Linqify(statement, condition, expression);
+        var query = $"{obj.statement}{obj.condition}{obj.expression}";
+        return numbers.AsQueryable().SelectMany(query);
+    }
 }
