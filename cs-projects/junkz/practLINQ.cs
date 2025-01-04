@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using System.Linq.Dynamic.Core;
+//using System.Linq.Dynamic.Core;
 using System.Collections.Generic;
 
 var arr = new int[5];
@@ -22,8 +22,8 @@ PrintEnumerables(from elem in arr where (0 == elem % 2) orderby elem select elem
     "Sorted Values, Values are Even number:");
 
 ////
-//PrintEnumerables(
-Linqify.Linqified("from value in arr", "orderby value", "select value");
+// had to use a full-flied project
+//Linqify.Linqified("from value in arr", "orderby value", "select value");
 
 void GetArray(ref int[] arr, bool resize = false, int size = 10)
 {
