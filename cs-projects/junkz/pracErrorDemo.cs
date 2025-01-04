@@ -37,7 +37,7 @@ static class ErrorExtension
 class MyError : Exception
 {
     private readonly string msg;
-    public MyError(string msg = "Error...:")
+    public MyError(string msg = "Error...:") : base(msg)
     {
         this.msg = msg;
     }
