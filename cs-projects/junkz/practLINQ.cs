@@ -15,6 +15,11 @@ PrintEnumerables(from elem in arr orderby elem descending select elem, "Sorted V
 PrintEnumerables(from elem in arr where elem > 4 orderby elem descending select elem,
     "Sorted Values In Descending greater than 4:");
 
+GetArray(ref arr, resize: true, size: 50);
+PrintEnumerables(from value in arr orderby value select value, "Sorted Values: ");
+PrintEnumerables(from elem in arr where (0 == elem % 2) orderby elem select elem,
+    "Sorted Values, Values are Even number:");
+
 void GetArray(ref int[] arr, bool resize = false, int size = 10)
 {
     if (resize == true)
