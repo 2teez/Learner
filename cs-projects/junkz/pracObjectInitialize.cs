@@ -1,7 +1,11 @@
 using System;
 using static System.Console;
-Console.WriteLine(new Person { Name = "omit", Age = 34 });
+var omit = new Person { Name = "omit", Age = 34 };
+Console.WriteLine(omit);
+omit.GetFullName("java", "jvm");
+Console.WriteLine(omit);
 WriteLine(new Person { }.Name);
+
 class Person
 {
     private string name;
@@ -15,4 +19,13 @@ class Person
     public string Name { get => name; set => name = value; }
     public int Age { get => age; set => age = value; }
     public override string ToString() => $"Person{{{Name}, {Age}}}";
+}
+
+static class PersonExtension
+{
+    public static Person GetFullName(this Person person, string middleName, string lastName)
+    {
+        person.Name += $" {middleName} {lastName}";
+        return person;
+    }
 }
