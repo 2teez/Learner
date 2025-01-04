@@ -59,12 +59,13 @@ struct Linqify
         this.expression = expression;
     }
 
-    public static IEnumerable<int> Linqified(string statement = "from value in values",
+    // come back to make this work
+    /*public static IEnumerable<int> Linqified(string statement = "from value in values",
          string condition = "", string expression = "select value", string msg = "Display Values: ")
     {
         Console.WriteLine(msg);
         var obj = new Linqify(statement, condition, expression);
         var query = $"{obj.statement}{obj.condition}{obj.expression}";
-        return numbers.AsQueryable().SelectMany(query);
-    }
+        return arr.AsQueryable().SelectMany(query);
+    }*/
 }
