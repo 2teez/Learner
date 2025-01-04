@@ -8,11 +8,17 @@ try
 }
 catch (MyError me)
 {
-    Console.WriteLine(me.What());
+    Console.WriteLine($"What from Error Extension: {me.What()}");
+    Console.WriteLine($"Message: {me.Message}");
+    Console.WriteLine($"StackTrace: {me.StackTrace}");
+    //Console.WriteLine($"InnerException: {me.innerException}");
 }
 catch (Exception ec)
 {
-    Console.WriteLine(ec.What());
+    Console.WriteLine($"What from Error Extension: {ec.What()}");
+    Console.WriteLine($"Message: {ec.Message}");
+    Console.WriteLine($"StackTrace: {ec.StackTrace}");
+    //Console.WriteLine($"InnerException: {ec.innerException}");
 }
 finally
 {
