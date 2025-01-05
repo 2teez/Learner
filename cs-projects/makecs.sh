@@ -13,6 +13,7 @@ function help() {
     echo "-s    run a c# script. The script can have either .csx or .cs file extension."
     echo "-m    manually compiling and running a c# standalone file"
     echo "-l    create a library project folder and link with the project to use it."
+    echo "-w    create a web project namely: ASP.NET MVC, ASP.NET CORE MVC/Razor (webApp) OR WebAPI"
 }
 
 if [[ $# -ne 2 ]]; then
@@ -20,7 +21,7 @@ if [[ $# -ne 2 ]]; then
     exit 1
 fi
 
-options="c:r:n:b:s:m:l:"
+options="c:r:n:b:s:m:l:w:"
 while getopts ${options} opt; do
     case $opt in
         b) if [[ -e "${OPTARG}" ]]; then
@@ -90,6 +91,8 @@ while getopts ${options} opt; do
             csc "${OPTARG}" && mono "${OPTARG%.*}.exe"
             # remove the executable file after running it
             rm -rf "${OPTARG%.*}.exe";;
+        w) ./makeCWeb.sh "${OPTARG}" # call the script namely makeWeb.sh
+        ;;
         h) help && exit1;;
         *) help && exit1;;
     esac
