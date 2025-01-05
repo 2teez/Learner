@@ -6,6 +6,7 @@ function selected_tech() {
     echo "2) ASP.NET Core MVC/Razor"
     echo "3) ASP.NET Core WebApi"
     echo "e - To Exit."
+    echo -n "Enter: "
 }
 
 echo "You are generating (\"scaffolding\") Web Project, using .NET Platform."
