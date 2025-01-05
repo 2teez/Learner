@@ -10,7 +10,7 @@ function selected_tech() {
 }
 
 echo "You are generating (\"scaffolding\") Web Project, using .NET Platform."
-echo -n "Will you want to continue or no [c|n]: "
+echo -n "Will you want to continue or no? [c|n]: "
 while read -r line; do
    if [[ "${line,,}" == 'n' ]]; then
        echo "bye..bye.."
@@ -43,7 +43,7 @@ while read -r line; do
         break # exit the while loo
     else
         echo "\"${line}\" - Invalid response. Enter either 'c' or 'n'."
-        echo -n "Will you want to continue or no [c|n]: "
+        echo -n "Will you want to continue or no? [c|n]: "
         continue
     fi
 done
