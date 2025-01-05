@@ -91,7 +91,7 @@ while getopts ${options} opt; do
             csc "${OPTARG}" && mono "${OPTARG%.*}.exe"
             # remove the executable file after running it
             rm -rf "${OPTARG%.*}.exe";;
-        w) ./makeCWeb.sh "${OPTARG}" # call the script namely makeWeb.sh
+        w) ./makecweb.sh "${OPTARG}" # call the script namely makeWeb.sh
         ;;
         h) help && exit1;;
         *) help && exit1;;
