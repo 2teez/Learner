@@ -21,14 +21,18 @@ namespace CollectThem
             people.AddRange(persons);
             Console.WriteLine(people.Count);
             Console.WriteLine(people.GetOldest());
+            foreach (var age in people.Age)
+            {
+                Console.WriteLine(age);
+            }
         }
     }
     partial class Person
     {
         public static bool operator >(Person p1, Person p2) => p1.Age > p2.Age;
-        public static bool operator >=(Person p1, Person p2) => p1.Age > p2.Age || p1.Age == p2.Age;
+        public static bool operator >=(Person p1, Person p2) => !(p1.Age > p2.Age);
         public static bool operator <(Person p1, Person p2) => p1.Age < p2.Age;
-        public static bool operator <=(Person p1, Person p2) => p1.Age < p2.Age || p1.Age == p2.Age;
+        public static bool operator <=(Person p1, Person p2) => !(p1.Age < p2.Age);
     }
     class People : DictionaryBase, ICloneable
     {
@@ -52,6 +56,21 @@ namespace CollectThem
         {
             Dictionary.Remove(name);
         }
+
+        /*public List<Person> GetOldest()
+        {
+            var persons = new List<Person>();
+            var age = 0;
+            foreach (DictionaryEntry entry in this)
+            {
+                if (((Person)entry.Value).Age > age)
+                {
+                    persons.Add((string)entry.Key);
+                }
+            }
+            return persons;
+        }*/
+
         public Person GetOldest()
         {
             var name = "";
@@ -75,11 +94,21 @@ namespace CollectThem
             }
             return newPeople;
         }
-        public IEnumerator<Person> GetEnumerator()
+        /*public IEnumerator<Person> GetEnumerator()
         {
             foreach (DictionaryEntry p in this)
             {
                 yield return ((Person)p).Value;
+            }
+        }*/
+        public IEnumerable Age
+        {
+            get
+            {
+                foreach (DictionaryEntry p in Dictionary)
+                {
+                    yield return (p.Value as Person).Age;
+                }
             }
         }
 
