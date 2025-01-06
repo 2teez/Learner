@@ -1,8 +1,15 @@
-
 using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+
+class TestThemAll
+{
+    static void Main(string[] args)
+    {
+
+    }
+}
 
 class Person
 {
@@ -13,16 +20,24 @@ class Person
 
 class People
 {
-    private Dictionary dict;
+    private Dictionary<string, Person> dict;
     public People()
     {
         dict = new Dictionary<string, Person>();
     }
     public void Add(Person person) => dict.Add(person.Name, person);
-    public void Remove(Person person) => dict.Remove(person);
+    public void Remove(Person person) => dict.Remove(person.Name);
     public Person this[string name]
     {
         get => dict[name];
         set => dict[name] = value;
+    }
+
+    public IEnumerator<Person> GetEnumerator()
+    {
+        foreach (var person in dict)
+        {
+            yield return person.Value;
+        }
     }
 }
