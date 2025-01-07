@@ -60,4 +60,15 @@ class People
             yield return person.Value;
         }
     }
+
+    public IEnumerable Age
+    {
+        get
+        {
+            foreach (var person in dict)
+            {
+                yield return person.Value.Age;
+            }
+        }
+    }
 }
