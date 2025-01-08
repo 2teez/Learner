@@ -21,23 +21,43 @@ if [[ $# -ne 2 ]]; then
     exit 1
 fi
 
+function remove_unwamted_folders(){
+    target_folder="${1}"
+    directory1=$(dirname "${target_folder}"/bin)
+    directory2=$(dirname "${target_folder}/obj")
+    file1=$(basename "$target_folder/bin")
+    file2=$(basename "$target_folder/obj")
+    filefound1=$(ls -r "${directory1}" | grep "${file1}")
+    filefound2=$(ls -r "${directory2}" | grep "${file2}")
+        if [[ -z "$filefound1" ]] && [[ -z "$filefound2" ]];then
+            echo "Neither \"$OPTARG/bin\" nor \"$OPTARG/obj\" folders were found." && return
+        fi
+        echo "Deleted csharp project namely: ${target_folder}/bin && ${target_folder}/obj"
+        rm -rf "${target_folder}/bin"
+        rm -rf "${target_folder}/obj"
+}
+
 function lists_and_delete() {
     directory="${1}"
-    echo "FOLDER -" "${directory}"
     echo "This check for bin and obj folders and delete them"
     echo -n "would you want to continue? [c|n]: "
     while read -r line; do
-        case "${line}" in
-           c) \ls -lR "${directory}"
+        case "${line,,}" in
+           c)
+             for file in "${directory}"/*; do
+                if [[ -d "$file" ]]; then
+                    remove_unwamted_folders "${file}"
+               fi
+              done
               break
-           ;;
-           n) exit 0
-              ;;
+            ;;
+           n) echo "Bye.."
+              exit 0
+            ;;
            *) echo "\"${line}\" - Invalid option. Enter either c to continue or n to end."
-              ;;
+            ;;
         esac
     done
-
 }
 
 options="c:r:n:b:s:m:l:w:"
@@ -57,19 +77,21 @@ while getopts ${options} opt; do
             ;;
         r)
             # call function list and delete
-            lists_and_delete
-            directory1=$(dirname "$OPTARG/bin")
-            directory2=$(dirname "$OPTARG/obj")
-            file1=$(basename "$OPTARG/bin")
-            file2=$(basename "$OPTARG/obj")
-            filefound1=$(ls -r "${directory1}" | grep "${file1}")
-            filefound2=$(ls -r "${directory2}" | grep "${file2}")
-            if [[ -z "$filefound1" ]] && [[ -z "$filefound2" ]];then
-                echo "Neither \"$OPTARG/bin\" nor \"$OPTARG/obj\" folders were found." && exit 0
-            fi
-            echo "Deleted csharp project namely: ${OPTARG}/bin && ${OPTARG}/obj"
-            rm -rf "${OPTARG}/bin"
-            rm -rf "${OPTARG}/obj"
+            echo "Are you deleting single project or multiple? "
+            echo -n "m - Multiple | s - Single : "
+            while read -r answer; do
+                case "$answer" in
+                m)
+                lists_and_delete "${OPTARG}"
+                break
+                ;;
+                s) remove_unwamted_folders "${OPTARG}"
+                   break
+                ;;
+                *) echo "${answer} - Invalid input."
+                   continue;;
+                esac
+            done
             ;;
         n)
             filefound=$(ls | grep "$OPTARG")
