@@ -21,6 +21,25 @@ if [[ $# -ne 2 ]]; then
     exit 1
 fi
 
+function lists_and_delete() {
+    directory="${1}"
+    echo "FOLDER -" "${directory}"
+    echo "This check for bin and obj folders and delete them"
+    echo -n "would you want to continue? [c|n]: "
+    while read -r line; do
+        case "${line}" in
+           c) \ls -lR "${directory}"
+              break
+           ;;
+           n) exit 0
+              ;;
+           *) echo "\"${line}\" - Invalid option. Enter either c to continue or n to end."
+              ;;
+        esac
+    done
+
+}
+
 options="c:r:n:b:s:m:l:w:"
 while getopts ${options} opt; do
     case $opt in
@@ -37,6 +56,8 @@ while getopts ${options} opt; do
             dotnet build "${OPTARG}"
             ;;
         r)
+            # call function list and delete
+            lists_and_delete
             directory1=$(dirname "$OPTARG/bin")
             directory2=$(dirname "$OPTARG/obj")
             file1=$(basename "$OPTARG/bin")
