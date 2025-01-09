@@ -9,9 +9,10 @@ namespace AnimalFarm
         private List<T> animals = new List<T>();
         public AnimalFarm(T animal) { animals.Add(animal); }
         public AnimalFarm() : this(new Cow { } as T) { }
-        public List<T> Animals { get => animals; }
-        public List<T> GetMoreAnimals(T animal) => animals.GetMoreAnimals<T>(animal);
-        //public IEnumerator<T> GetEnumerator() => animals.GetEnumerator();
+        public List<T> Animals => animals;
+        public List<T> GetMoreAnimals(T animal) => animals.GetMoreAnimals(animal);
+
+        public IEnumerator<T> GetEnumerator() => animals.GetEnumerator();
     }
 
     internal static class ListExt
