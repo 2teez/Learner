@@ -19,9 +19,9 @@ namespace GenericDemo
             }
             PrintCollections(animals);
             ///
-            AnimalFarm<Animal> farm = new AnimalFarm<Animal>(new Cow { });
+            var farm = new AnimalFarm<Animal>(new Cow());
             farm.GetMoreAnimals(new Chicken("Mary")).GetMoreAnimals(
-                new Cow { }).GetMoreAnimals(new Cow());
+                new Cow { }).GetMoreAnimals<Animal>(new Cow());
             PrintCollections(farm.Animals);
         }
 
