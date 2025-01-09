@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using SystemExt;
-
+using AnimalFarm;
 
 namespace GenericDemo
 {
@@ -18,14 +18,21 @@ namespace GenericDemo
                 animal.Feed();
             }
             PrintCollections(animals);
+            ///
+            AnimalFarm<Animal> farm = new AnimalFarm<Animal>(new Cow { });
+            farm.GetMoreAnimals(new Chicken("Mary")).GetMoreAnimals(
+                new Cow { }).GetMoreAnimals(new Cow());
+            PrintCollections(farm.Animals);
         }
 
-        static void PrintCollections<T>(IEnumerable<T> collections)
+        static void PrintCollections<T>(IEnumerable<T> collections, string msg = "Printing Values..")
         {
+            Console.WriteLine(msg);
             foreach (var collection in collections)
             {
                 Console.Out.PrintLine(collection);
             }
+            Console.Out.PrintLine(collections.Count());
         }
     }
 
