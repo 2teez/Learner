@@ -2,25 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using SystemExt;
 
-namespace SystemExt
-{
-    static class SystemExtension
-    {
-        //void Print() { }
-        public static void PrintLine<T>(this System.IO.TextWriter t, params T[] data)
-        {
-            foreach (var d in data)
-            {
-                t.WriteLine(d);
-            }
-        }
-    }
-}
 
 namespace GenericDemo
 {
-    using SystemExt;
     class GenericDemoTest
     {
         static void Main(string[] args)
