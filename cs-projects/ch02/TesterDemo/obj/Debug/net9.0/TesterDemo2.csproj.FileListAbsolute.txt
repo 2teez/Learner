@@ -1,6 +1,0 @@
-/Users/timothyadigun/prac/genPrac/cs-projects/ch02/TesterDemo/obj/Debug/net9.0/TesterDemo2.csproj.AssemblyReference.cache
-/Users/timothyadigun/prac/genPrac/cs-projects/ch02/TesterDemo/obj/Debug/net9.0/TesterDemo2.GeneratedMSBuildEditorConfig.editorconfig
-/Users/timothyadigun/prac/genPrac/cs-projects/ch02/TesterDemo/obj/Debug/net9.0/TesterDemo2.AssemblyInfoInputs.cache
-/Users/timothyadigun/prac/genPrac/cs-projects/ch02/TesterDemo/obj/Debug/net9.0/TesterDemo2.AssemblyInfo.cs
-/Users/timothyadigun/prac/genPrac/cs-projects/ch02/TesterDemo/obj/Debug/net9.0/TesterDemo2.csproj.CoreCompileInputs.cache
-/Users/timothyadigun/prac/genPrac/cs-projects/ch02/TesterDemo/obj/Debug/net9.0/TesterDemo2.sourcelink.json
