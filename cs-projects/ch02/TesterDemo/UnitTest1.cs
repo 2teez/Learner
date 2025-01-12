@@ -25,13 +25,21 @@ public class LargestTest
         int[] negatives = new int[] { -9, -8, -7 };
         Assert.That(Cmp.Largest(negatives), Is.EqualTo(-7));
     }
+
+    [Test]
+    [ExpectedException(typeof(ArgumentException))]
+    public void Empty()
+    {
+        Cmp.Largest(new int[] { });
+    }
 }
 
 class Cmp
 {
     public static T Largest<T>(T[] values) where T : IComparable<T>
     {
-        var result = values[0];
+        if (values.Length == 0) throw new ArgumentException("Empty List.");
+        var result; // = values[0];
         for (int index = 1; index < values.Length; ++index)
         {
             if (values[index].CompareTo(result) > 0)
