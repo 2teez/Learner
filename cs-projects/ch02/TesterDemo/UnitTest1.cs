@@ -12,6 +12,19 @@ public class LargestTest
         Assert.That(Cmp.Largest(new[] { 9, 7, 8 }), Is.EqualTo(9));
         Assert.That(Cmp.Largest(new[] { 8, 9, 7 }), Is.EqualTo(9));
     }
+
+    [Test]
+    public void One()
+    {
+        Assert.That(Cmp.Largest(new[] { 1 }), Is.EqualTo(1));
+    }
+
+    [Test]
+    public void Negative()
+    {
+        int[] negatives = new int[] { -9, -8, -7 };
+        Assert.That(Cmp.Largest(negatives), Is.EqualTo(-7));
+    }
 }
 
 class Cmp
