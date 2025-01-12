@@ -3,7 +3,7 @@
 #description: create and clean csharp files
 
 function help() {
-    echo "Usage: ./$(basename $0) -h | -b|-c|-r|-n|-s|-m|-l <filename>"
+    echo "Usage: ./$(basename $0) -h | -b|-c|-r|-n|-s|-m|-l|-w|-t|-T <filename>"
     echo "options:"
     echo "-b    build and run project name"
     echo "-c    create project name"
@@ -11,6 +11,8 @@ function help() {
     echo "-n    remove the entire project folder"
     echo "-h    display the help function"
     echo "-s    run a c# script. The script can have either .csx or .cs file extension."
+    echo "-t    create a unit test for a c# project"
+    echo "-T    run a unit test for a named c# project"
     echo "-m    manually compiling and running a c# standalone file"
     echo "-l    create a library project folder and link with the project to use it."
     echo "-w    create a web project namely: ASP.NET MVC, ASP.NET CORE MVC/Razor (webApp) OR WebAPI"
@@ -60,7 +62,7 @@ function lists_and_delete() {
     done
 }
 
-options="c:r:n:b:s:m:l:w:"
+options="c:r:n:b:s:m:l:w:t:T:"
 while getopts ${options} opt; do
     case $opt in
         b) if [[ -e "${OPTARG}" ]]; then
@@ -107,6 +109,12 @@ while getopts ${options} opt; do
                 else exit 0
                 fi
             done
+            ;;
+        t) # create a unit test for a named csharp project
+            dotnet new nunit -o "${OPTARG}"
+            ;;
+        T) # run a unit test project for c#
+            dotnet test "${OPTARG}"
             ;;
         s)  # compiling and runing c# script
             dotnet-script "${OPTARG}"
