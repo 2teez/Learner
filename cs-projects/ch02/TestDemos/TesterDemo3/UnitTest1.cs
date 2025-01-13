@@ -30,13 +30,26 @@ public class TestShapesModel
     }
 
     [Test]
+    [Ignore("This was tested on the previous general method for area")]
     public void CalculateCircleArea()
     {
         Assert.That(shapes["circle"].CalculateArea(), Is.EqualTo(89.3).Within(0.05));
     }
+
     [Test]
     public void CalculateCirclePerimeter()
     {
         Assert.That(shapes["circle"].CalculatePerimeter(), Is.AtLeast(32).Within(0.01));
+    }
+    [Test]
+    public void CalculateSquareArea()
+    {
+        Assert.That(shapes["square"].CalculateArea(), Is.EqualTo(25).Within(0.05));
+    }
+
+    [Test]
+    public void CalculateSquarePerimeter()
+    {
+        Assert.That(shapes["square"].CalculatePerimeter(), Is.AtLeast(19).Within(0.01));
     }
 }
