@@ -11,7 +11,7 @@ namespace SwitchExpression
             WriteLine(TwelveDaysOfChristmasSongs(9));
         }
 
-        static string TwelveDaysOfChristmasSongs(int day = 0) => day switch
+        public static string TwelveDaysOfChristmasSongs(int day = 0) => day switch
         {
             1 => "have a heart",
             _ => "that is all the songs",
