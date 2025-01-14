@@ -23,7 +23,7 @@ if [[ $# -ne 2 ]]; then
     exit 1
 fi
 
-function remove_unwamted_folders(){
+function remove_unwanted_folders(){
     target_folder="${1}"
     directory1=$(dirname "${target_folder}"/bin)
     directory2=$(dirname "${target_folder}"/obj)
@@ -52,7 +52,7 @@ function lists_and_delete() {
            c)
              for file in "${directory}"/*; do
                 if [[ -d "$file" ]]; then
-                    remove_unwamted_folders "${file}"
+                    remove_unwanted_folders "${file}"
                fi
               done
               break
@@ -91,7 +91,7 @@ while getopts ${options} opt; do
                 lists_and_delete "${OPTARG}"
                 break
                 ;;
-                s) remove_unwamted_folders "${OPTARG}"
+                s) remove_unwanted_folders "${OPTARG}"
                    break
                 ;;
                 *) echo "${answer} - Invalid input."
