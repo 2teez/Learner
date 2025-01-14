@@ -1,6 +1,7 @@
 namespace TesterDemo3;
 
-//using NUnit.Framework;
+using NUnit.Framework;
+using System.IO;
 using Shapes;
 
 [TestFixture]
@@ -39,7 +40,8 @@ public class TestShapesModel
     [Test]
     public void CalculateCirclePerimeter()
     {
-        Assert.That(shapes["circle"].CalculatePerimeter(), Is.AtLeast(32).Within(0.01));
+        Assert.That(shapes["circle"].CalculatePerimeter(), Is.AtLeast(32).Within(0.01),
+            shapes["circle"].ToString());
     }
     [Test]
     public void CalculateSquareArea()
@@ -51,5 +53,14 @@ public class TestShapesModel
     public void CalculateSquarePerimeter()
     {
         Assert.That(shapes["square"].CalculatePerimeter(), Is.AtLeast(19).Within(0.01));
+    }
+
+    [Test]
+    [Ignore("Checking a wrong directive path by default")]
+    public void TestOpenedFile()
+    {
+        Stream actualFile = File.OpenRead("Shapes.cs");
+        Stream expectedFile = File.OpenRead("./TesterDemo3.csproj");
+        Assert.That(actualFile, Is.EqualTo(expectedFile));
     }
 }
