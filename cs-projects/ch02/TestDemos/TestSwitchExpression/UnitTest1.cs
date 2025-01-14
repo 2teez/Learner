@@ -26,6 +26,12 @@ namespace SwitchExpressionTests
         {
             SwitchExpression.CheckExperssion.SayEveryDay(5);
         }
+        [Test]
+        public void FileExceptionTest()
+        {
+            var ex = Assert.Throws<FileNotFoundException>(() => new StreamReader("UnitTest1.cs"));
+            Assert.That(ex.Message, Does.Match("^Could.+?"));
+        }
     }
 }
 
