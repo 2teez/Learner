@@ -26,7 +26,7 @@ fi
 function remove_unwamted_folders(){
     target_folder="${1}"
     directory1=$(dirname "${target_folder}"/bin)
-    directory2=$(dirname "${target_folder}/obj")
+    directory2=$(dirname "${target_folder}"/obj)
     file1=$(basename "$target_folder/bin")
     file2=$(basename "$target_folder/obj")
     filefound1=$(ls -r "${directory1}" | grep "${file1}")
@@ -35,8 +35,12 @@ function remove_unwamted_folders(){
             echo "Neither \"$OPTARG/bin\" nor \"$OPTARG/obj\" folders were found." && return
         fi
         echo "Deleted csharp project namely: ${target_folder}/bin && ${target_folder}/obj"
-        rm -rf "${target_folder}/bin"
-        rm -rf "${target_folder}/obj"
+        #rm -rf "${target_folder}"/bin
+        #rm -rf "${target_folder}"/obj
+        files=("${target_folder}/bin" "${target_folder}/obj")
+        for file in "${files[@]}"; do
+            rm -rf "${file}"
+        done
 }
 
 function lists_and_delete() {
