@@ -4,17 +4,18 @@ System.Console.Out.PrintLine("Hello, New World");
 System.Console.Out.PrintLine<double>(34.67);
 
 var java = new Person { };
+System.Console.Out.PrintLine<Person>(java);
 java.Name = "Java";
 java.Age = 35;
 System.Console.Out.PrintLine<Person>(java);
 
 struct Person
 {
-    private string name;
-    private int age;
+    private string? name;
+    private int? age;
 
-    public string Name { get => name; set => name = value; }
-    public int Age { get => age; set => age = value; }
+    public string Name { get => name ?? "Doe"; set => name = value; }
+    public int Age { get => age ?? 0; set => age = value; }
     public override string ToString() => $"Name: {Name}, Age: {Age}";
 }
 
