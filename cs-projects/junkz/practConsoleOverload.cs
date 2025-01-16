@@ -9,6 +9,9 @@ java.Name = "Java";
 java.Age = 35;
 System.Console.Out.PrintLine<Person>(java);
 
+new System.Collections.Generic.List<int>(
+    new[] { 2, 5, 8, 4, 0 }).ForEach(n => System.Console.Write(n + " "));//);
+
 struct Person
 {
     private string? name;
@@ -29,5 +32,14 @@ public static class Printer
     public static void PrintLine<T>(this System.IO.TextWriter writer, T obj)
     {
         writer.WriteLine(obj);
+    }
+
+    public static void ForEach<T>(this System.Collections.Generic.List<T> list, System.Action<T> fn)
+    {
+        foreach (var value in list)
+        {
+            fn(value);
+        }
+        System.Console.WriteLine();
     }
 }
