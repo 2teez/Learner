@@ -25,9 +25,18 @@ namespace PractSearching
         {
             var rand = new Random();
             var list = new List<T>(ienum);
-            for (var i = 0; i < list.Count; i++)
+            var indices = new List<int>();
+            while (indices.Count < list.Count)
             {
-                ienum[i] = list[rand.Next(list.Count)];
+                var randomNumber = rand.Next(0, list.Count);
+                if (indices.Contains(randomNumber))
+                    continue;
+                else indices.Add(randomNumber);
+            }
+            // adding the items
+            for (var index = 0; index < indices.Count; ++index)
+            {
+                ienum[index] = list[indices[index]];
             }
         }  // end of Randomized method
         public static int[] GenerateValues(
