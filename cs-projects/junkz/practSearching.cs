@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using static UtlExt.ArrayPrinter;
 
+public delegate void DelegatedFn<T>(T item);
+
 namespace PractSearching
 {
     class Program
@@ -20,6 +22,11 @@ namespace PractSearching
             Console.WriteLine(string.Join(", ", langs));
             Console.WriteLine(LinearSearch(langs, "c#"));
             Console.WriteLine(BinarySearch(values, 8));
+            //// using delegation functions
+            var intDelegatedFn = new DelegatedFn<int>(n => Console.Write(n + "; "));
+            values.PrintIt(intDelegatedFn);
+            var stringDelegatedFn = new DelegatedFn<string>(n => Console.Write(n + "; "));
+            langs.PrintIt(stringDelegatedFn);
         }
 
         public static void Randomized<T>(ref T[] ienum)
@@ -98,6 +105,17 @@ namespace UtlExt
 {
     static class ArrayPrinter
     {
+        public static void PrintIt<T>(
+            this IEnumerable<T> ienum,
+            DelegatedFn<T> fn)
+        {
+            Console.WriteLine($"{ienum} - Values");
+            foreach (var val in ienum)
+            {
+                fn(val);
+            }
+            Console.WriteLine();
+        }
         public static void PrintIt<T>(
             this IEnumerable<T> ienum,
             Action<T> fn,
