@@ -19,6 +19,7 @@ namespace PractSearching
             langs.PrintIt(Console.Write);
             Console.WriteLine(string.Join(", ", langs));
             Console.WriteLine(LinearSearch(langs, "c#"));
+            Console.WriteLine(BinarySearch(values, 8));
         }
 
         public static void Randomized<T>(ref T[] ienum)
@@ -57,6 +58,31 @@ namespace PractSearching
         {
             var list = new List<T>(ienum);
             for (var i = 0; i < list.Count; i++)
+            {
+                if (list[i].Equals(searchKey))
+                {
+                    return (i + 1);
+                }
+            }
+            return -1; // searchKey not found
+        }
+        public static int BinarySearch<T>(IEnumerable<T> ienum, T searchKey)
+        {
+            var list = new List<T>(ienum);
+            var startIndex = 0;
+            var midIndex = (list.Count / 2) + 1;
+            ienum.PrintIt(n => Console.Write(n + ","), "Values inside Binary Search:");
+            var result = BinarySearch(ienum, startIndex, midIndex, searchKey);
+            if (result == -1)
+                result = BinarySearch(ienum, midIndex, list.Count - 1, searchKey);
+            return result;
+        }
+        private static int BinarySearch<T>(
+            IEnumerable<T> ienum,
+            int startIndex, int endIndex, T searchKey)
+        {
+            var list = new List<T>(ienum);
+            for (var i = startIndex; i < endIndex; i++)
             {
                 if (list[i].Equals(searchKey))
                 {
