@@ -16,7 +16,7 @@ namespace PractSearching
             langs.PrintIt(n => Console.WriteLine(n + ","));
             Console.WriteLine(LinearSearch(langs, "c#"));
             Randomized(ref langs);
-            //langs.PrintIt(n => Console.Write(n + ","));
+            langs.PrintIt(Console.Write);
             Console.WriteLine(string.Join(", ", langs));
             Console.WriteLine(LinearSearch(langs, "c#"));
         }
