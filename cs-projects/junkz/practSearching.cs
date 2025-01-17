@@ -8,9 +8,17 @@ namespace PractSearching
     {
         static void Main(string[] args)
         {
-            GenerateValues(20).PrintIt(n => Console.Write(n + "["));
+            var values = GenerateValues(20);
+            values.PrintIt(n => Console.Write(n + "]["));
+            Console.WriteLine(string.Join(",", values));
+            Console.WriteLine(LinearSearch(values, 5));
+            Console.WriteLine(LinearSearch(
+                new string[] { "java", "c#", "jquery", "javascript" }, "c#"));
         }
+        public static void Randomized<T>(ref IEnumerable<T> ienum)
+        {
 
+        }  // end of Randomized method
         public static int[] GenerateValues(
             int numberOfValues,
             int numberRange = 10
@@ -24,7 +32,20 @@ namespace PractSearching
             }
             return values;
         }
-    }
+        public static int LinearSearch<T>(IEnumerable<T> ienum, T searchKey)
+        //where T : IComparable
+        {
+            var list = new List<T>(ienum);
+            for (var i = 0; i < list.Count; i++)
+            {
+                if (list[i].Equals(searchKey))
+                {
+                    return (i + 1);
+                }
+            }
+            return -1; // searchKey not found
+        }
+    } // end of class program
 }
 
 namespace UtlExt
@@ -42,6 +63,7 @@ namespace UtlExt
             {
                 fn(val);
             }
+            Console.WriteLine();
         }
     }
 }
