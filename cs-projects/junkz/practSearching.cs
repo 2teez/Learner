@@ -12,12 +12,23 @@ namespace PractSearching
             values.PrintIt(n => Console.Write(n + "]["));
             Console.WriteLine(string.Join(",", values));
             Console.WriteLine(LinearSearch(values, 5));
-            Console.WriteLine(LinearSearch(
-                new string[] { "java", "c#", "jquery", "javascript" }, "c#"));
+            var langs = new string[] { "java", "c#", "jquery", "javascript" };
+            langs.PrintIt(n => Console.WriteLine(n + ","));
+            Console.WriteLine(LinearSearch(langs, "c#"));
+            Randomized(ref langs);
+            //langs.PrintIt(n => Console.Write(n + ","));
+            Console.WriteLine(string.Join(", ", langs));
+            Console.WriteLine(LinearSearch(langs, "c#"));
         }
-        public static void Randomized<T>(ref IEnumerable<T> ienum)
-        {
 
+        public static void Randomized<T>(ref T[] ienum)
+        {
+            var rand = new Random();
+            var list = new List<T>(ienum);
+            for (var i = 0; i < list.Count; i++)
+            {
+                ienum[i] = list[rand.Next(list.Count)];
+            }
         }  // end of Randomized method
         public static int[] GenerateValues(
             int numberOfValues,
