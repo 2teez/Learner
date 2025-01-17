@@ -10,14 +10,15 @@ namespace Sorter
 
     class Sorter
     {
-        public static void Sorted(ref int[] ienum, Order state = Order.Ascending)
+        public static void Sorted<T>(ref T[] ienum, Order state = Order.Ascending)
+        where T : IComparable<T>
         {
-            var list = new List<int>(ienum);
+            var list = new List<T>(ienum);
             for (var i = 0; i < list.Count; i++)
             {
                 for (var j = 0; j < list.Count; j++)
                 {
-                    if (list[i] > list[j])
+                    if (list[i].CompareTo(list[j]) > 0)
                     {
                         var temp = list[i];
                         list[i] = list[j];
@@ -26,7 +27,7 @@ namespace Sorter
                 }
             }
 
-            ienum = CopyData<int>(list.ToArray(), state);
+            ienum = CopyData<T>(list.ToArray<T>(), state);
         }
 
         private static T[] CopyData<T>(IEnumerable<T> ienum, Order state = Order.Ascending)
