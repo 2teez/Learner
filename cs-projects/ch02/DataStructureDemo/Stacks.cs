@@ -68,6 +68,14 @@ namespace Stacks
             }
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (var value in data)
+            {
+                yield return (T)value;
+            }
+        }
+
         public override string ToString() => $"Stack{{{string.Join(",", data)}}}";
     }
 }
