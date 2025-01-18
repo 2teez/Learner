@@ -3,8 +3,9 @@
 #description: create and clean csharp files
 
 function help() {
-    echo "Usage: ./$(basename $0) -h | -b|-c|-r|-n|-s|-m|-l|-w|-t|-T <filename>"
+    echo "Usage: ./$(basename $0) -h | -a|-b|-c|-r|-n|-s|-m|-l|-w|-t|-T <filename>"
     echo "options:"
+    echo "-a    create a cshtml file in a folder"
     echo "-b    build and run project name"
     echo "-c    create project name"
     echo "-r    remove project bin folder"
@@ -66,9 +67,36 @@ function lists_and_delete() {
     done
 }
 
-options="c:r:n:b:s:m:l:w:t:T:"
+options="a:c:r:n:b:s:m:l:w:t:T:"
 while getopts ${options} opt; do
     case $opt in
+        a)
+            filename=$(basename "${OPTARG}")
+            file_ext="${filename##*.}"
+            if [[ "${file_ext}" != "cshtml" ]]; then
+               echo "File Extention must be cshtml."
+               exit 1
+            fi
+            # create a file with a filename in a specified folder
+            touch "${OPTARG}"
+            directory=$(dirname "${OPTARG}")
+            cd "${directory}"
+            echo "
+            @{
+                Layout = null;
+            }
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <meta name="" content="width=device-width" />
+                    <title></title>
+                </head>
+                <body>
+                    <div></div>
+                </body>
+            </html>
+            " > "${filename}"
+            ;;
         b) if [[ -e "${OPTARG}" ]]; then
                cd "${OPTARG}"
                dotnet run
