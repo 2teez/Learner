@@ -30,6 +30,8 @@ namespace DataStructureDemo
             stack.Push("javascript");
             stack.Push("php");
             stack.Print();
+            stack[new Random().Next(stack.Size - 2)].Print("Stated Value: ");
+            foreach (var lang in stack) lang.Print("Count...");
         }
     }
 }
@@ -42,9 +44,9 @@ namespace StringUtil
         {
             if (!string.IsNullOrEmpty(msg))
             {
-                Console.WriteLine($"{msg}");
+                Console.Write($"{msg}");
             }
-            Console.WriteLine($"{str.PadLeft(str.Length * 3)}");
+            Console.WriteLine($"{str}");
         }
     }
 }
