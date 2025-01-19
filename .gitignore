@@ -34,3 +34,7 @@ variables
 prac_abstract_cl/build
 prac_abstract_cl2/build
 main
+cs-projects/*/*/obj
+cs-projects/*/*/bin
+cs-projects/*/*/*/bin
+cs-projects/*/*/*/obj
