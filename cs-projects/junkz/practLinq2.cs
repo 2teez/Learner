@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Util;
@@ -35,10 +36,17 @@ namespace LinqPractice
             string.Join("\n", (lists.Where(g => !g.Name.StartsWith("c"))
                                     .OrderBy(g => g.Name)
                                     .Select(g => g))).Pp();
-            System.Collections.ArrayList data = new System.Collections.ArrayList();
-            data.AddRange(new object[] { 1, 4, 7, new Gardget("bolier", "to boil"), 4.2, 1.35 });
+            System.Collections.ArrayList data =
+                new System.Collections.ArrayList();
+            data.AddRange(new object[] { 1, 4, 7, new Gardget(
+                "bolier", "to boil"), 4.2, 1.35 });
             string.Join(" ", data.OfType<double>()).Pp();
             string.Join(" ", data.OfType<int>()).Pp();
+
+            string.Join(",", (new object[]{ new { Name= "java", Purpose = "rule all"},
+                new {Name="Exclair", Purpose = "sense out"} }).ToArray()).Pp();
+            ///
+            data.Lpp<System.Collections.ArrayList>();
         }
     }
 }
@@ -48,5 +56,16 @@ namespace Util
     static class Util
     {
         public static void Pp(this object obj) => Console.WriteLine(obj);
+        public static void Lpp<T>(this T obj)
+        {
+            if (obj is IEnumerable enumerable)
+            {
+                string.Join(",", enumerable.Cast<object>()).Pp();
+            }
+            else
+            {
+                obj.Pp();
+            }
+        }
     }
 }
