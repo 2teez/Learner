@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,10 @@ namespace LinqPractice
                 new {Name="Exclair", Purpose = "sense out"} }).ToArray()).Pp();
             ///
             data.Lpp<System.Collections.ArrayList>();
+            ///
+            var ndata = string.Join(",", (new object[]{ new { Name= "java", Purpose = "rule all"},
+                new {Name="Exclair", Purpose = "sense out"} }));
+            ndata.Pp();
         }
     }
 }
@@ -56,8 +61,10 @@ namespace Util
     static class Util
     {
         public static void Pp(this object obj) => Console.WriteLine(obj);
-        public static void Lpp<T>(this T obj)
+        public static void Lpp<T>(this T obj, string msg = "Values...")
         {
+            if (string.IsNullOrEmpty(msg)) Console.WriteLine();
+            else Console.WriteLine(msg);
             if (obj is IEnumerable enumerable)
             {
                 string.Join(",", enumerable.Cast<object>()).Pp();
