@@ -35,6 +35,10 @@ namespace LinqPractice
             string.Join("\n", (lists.Where(g => !g.Name.StartsWith("c"))
                                     .OrderBy(g => g.Name)
                                     .Select(g => g))).Pp();
+            System.Collections.ArrayList data = new System.Collections.ArrayList();
+            data.AddRange(new object[] { 1, 4, 7, new Gardget("bolier", "to boil"), 4.2, 1.35 });
+            string.Join(" ", data.OfType<double>()).Pp();
+            string.Join(" ", data.OfType<int>()).Pp();
         }
     }
 }
