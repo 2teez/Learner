@@ -26,11 +26,24 @@ namespace RewriteScript
             }
             file.Close();
         }
+        /// Comments
         public static void Stringify(string line)
         {
-            if (line == "")
+            if (Regex.IsMatch(line, "/// Comments$"))
+            {
+                @"
+                /// <summary>
+                /// </summary>
+                /// <param name=""> </params>
+                /// <returns> </returns>
+                ".Pp(msg: "");
+            }
+            else
+            {
                 line.Pp(msg: "");
+            }
         }
+        /// Comments
         public static StreamReader GetFile(string filename)
         {
             StreamReader file = null;
@@ -44,6 +57,7 @@ namespace RewriteScript
             }
             return file;
         }
+        /// Comments
         public static string GetInput(string msg = "Enter: ")
         {
             msg.Pp(msg: "");
@@ -62,6 +76,7 @@ namespace Util
 {
     static class Printer
     {
+        /// Comments
         public static void Pp(
             this object obj,
             Action<object> fn = null,
@@ -69,9 +84,10 @@ namespace Util
         {
             fn ??= Console.Out.WriteLine;
             if (msg != "")
-                fn(msg);
+                Console.Write(msg);
             fn(obj);
         }
+        /// Comments
         public static string Times(this string str, int numberOfTimes = 3, string sep = "\n")
         {
             var txt = new StringBuilder(numberOfTimes);
