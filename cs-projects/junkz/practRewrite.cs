@@ -11,9 +11,37 @@ namespace RewriteScript
     {
         static void Main(string[] args)
         {
-            /*var f = new StreamWriter("new.txt");
+            /*
+            // used to generate some string
+            var f = new StreamWriter("new.txt");
             "Halleluyah..".Times(500).Pp(f.WriteLine, "Shouting 500 Halleluyahs for Daniel @ 5!");
-            f.Close();*/
+            f.Close();
+            */
+            var filename = GetFile(GetInput());
+        }
+        public static StreamReader GetFile(string filename)
+        {
+            StreamReader file = null;
+            try
+            {
+                file = new StreamReader(filename);
+            }
+            catch (Exception ex)
+            {
+                ex.Message.Pp();
+            }
+            return file;
+        }
+        public static string GetInput(string msg = "Enter: ")
+        {
+            msg.Pp(msg: "");
+            var input = Console.ReadLine();
+            while (string.IsNullOrEmpty(input))
+            {
+                "Invalid Input".Pp(msg: "");
+                input = Console.ReadLine();
+            }
+            return input;
         }
     }
 }
