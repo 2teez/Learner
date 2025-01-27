@@ -2,9 +2,6 @@ using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.IO;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using Util;
 
 namespace RewriteScript
@@ -13,35 +10,57 @@ namespace RewriteScript
     {
         static void Main(string[] args)
         {
-            /*
-            // used to generate some string
-            var f = new StreamWriter("new.txt");
-            "Halleluyah..".Times(500).Pp(f.WriteLine, "Shouting 500 Halleluyahs for Daniel @ 5!");
-            f.Close();
-            */
-            var file = GetFile(GetInput());
-            while (!file.EndOfStream)
+            "You are re-writing your program file".Pp(msg: "");
+            "Will you to write to a file or just DISPLAY?".Pp(msg: "");
+            "1. Display".Pp(msg: "");
+            "2. Save to file".Pp(msg: "");
+            "3. Save to a default file by this program".Pp(msg: "");
+            var choice = int.Parse(GetInput("Choice: "));
+
+            // when file to write is the option selected
+            StreamWriter writeToFile = null;
+            if (choice == 2)
             {
-                Stringify(file.ReadLine());
+                writeToFile = new StreamWriter(GetInput("Enter filename to write to: "));
             }
-            file.Close();
+            else if (choice == 3)
+            {
+                var newfile = "REW";
+                writeToFile = new StreamWriter(newfile);
+            }
+
+            // read from file
+            var readFromFile = GetFile(GetInput("Filename to Read from: "));
+            var sb = new StringBuilder();
+            while (!readFromFile.EndOfStream)
+            {
+                sb.Append(Stringify(readFromFile.ReadLine()) + "\n");
+            }
+            readFromFile.Close();
+            if (choice == 1) sb.ToString().Pp(msg: "");
+            else
+            {
+                sb.ToString().Pp(writeToFile.WriteLine, msg: "");
+                writeToFile.Close();
+            }
         }
+
         /// Comments
-        public static void Stringify(string line)
+        public static string Stringify(string line)
         {
             if (Regex.IsMatch(line, "/// Comments$"))
             {
-                @"
+                return $@"
                 /// <summary>
                 /// </summary>
-                /// <param name=""> </params>
+                /// <param name=""> </param>
                 /// <returns> </returns>
-                ".Pp(msg: "");
+                /// <example>
+                /// <code> </code>
+                /// </example>
+                ";
             }
-            else
-            {
-                line.Pp(msg: "");
-            }
+            return line;
         }
         /// Comments
         public static StreamReader GetFile(string filename)
@@ -53,14 +72,14 @@ namespace RewriteScript
             }
             catch (Exception ex)
             {
-                ex.Message.Pp();
+                ex.Message.Pp(msg: $"Error: {filename} is Invalid.");
             }
             return file;
         }
         /// Comments
         public static string GetInput(string msg = "Enter: ")
         {
-            msg.Pp(msg: "");
+            msg.Pp(Console.Write, msg: "");
             var input = Console.ReadLine();
             while (string.IsNullOrEmpty(input))
             {
@@ -84,7 +103,7 @@ namespace Util
         {
             fn ??= Console.Out.WriteLine;
             if (msg != "")
-                Console.Write(msg);
+                fn(msg);
             fn(obj);
         }
         /// Comments
