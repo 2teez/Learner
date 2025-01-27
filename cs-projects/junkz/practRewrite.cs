@@ -1,4 +1,6 @@
 using System;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.IO;
 using System.Linq;
 using System.Collections;
@@ -17,7 +19,17 @@ namespace RewriteScript
             "Halleluyah..".Times(500).Pp(f.WriteLine, "Shouting 500 Halleluyahs for Daniel @ 5!");
             f.Close();
             */
-            var filename = GetFile(GetInput());
+            var file = GetFile(GetInput());
+            while (!file.EndOfStream)
+            {
+                Stringify(file.ReadLine());
+            }
+            file.Close();
+        }
+        public static void Stringify(string line)
+        {
+            if (line == "")
+                line.Pp(msg: "");
         }
         public static StreamReader GetFile(string filename)
         {
@@ -56,12 +68,13 @@ namespace Util
             string msg = "Printing..")
         {
             fn ??= Console.Out.WriteLine;
-            fn(msg);
+            if (msg != "")
+                fn(msg);
             fn(obj);
         }
         public static string Times(this string str, int numberOfTimes = 3, string sep = "\n")
         {
-            var txt = new System.Text.StringBuilder(numberOfTimes);
+            var txt = new StringBuilder(numberOfTimes);
             for (var i = 0; i < numberOfTimes; i++)
             {
                 txt.Append(str + $" number {i + 1}" + sep);
