@@ -15,7 +15,7 @@ namespace Ch05.Exercise.Exercise01
             string input;
             do
             {
-                Console.Write("Enter a number: ");
+                Console.WriteLine("Enter a number: ");
                 input = Console.ReadLine();
                 if (!string.IsNullOrEmpty(input) && int.TryParse(
                     input, NumberStyles.Any, CultureInfo.CurrentUICulture, out var number))
@@ -34,7 +34,7 @@ namespace Ch05.Exercise.Exercise01
         }
         private static long Fibonacci(int n)
         {
-            if (n < 2L)
+            if (n <= 2L)
             {
                 return 1L;
             }
