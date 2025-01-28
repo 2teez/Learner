@@ -34,10 +34,13 @@ namespace RewriteScript
             var sb = new StringBuilder();
             while (!readFromFile.EndOfStream)
             {
-                sb.Append(Stringify(readFromFile.ReadLine()) + "\n");
+                sb.AppendLine(Stringify(readFromFile.ReadLine()));
             }
             readFromFile.Close();
-            if (choice == 1) sb.ToString().Pp(msg: "");
+            if (choice == 1)
+            {
+                sb.ToString().Pp(msg: "");
+            }
             else
             {
                 sb.ToString().Pp(writeToFile.WriteLine, msg: "");
