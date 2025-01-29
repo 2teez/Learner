@@ -9,6 +9,7 @@ function help() {
     echo "-a    create a cshtml file in a folder"
     echo "-b    build and run project name"
     echo "-c    create project name"
+    echo "-C    create a project folder, and a solution file and the project to the solution file."
     echo "-r    remove project bin folder"
     echo "-n    remove the entire project folder"
     echo "-h    display the help function"
@@ -69,7 +70,7 @@ function lists_and_delete() {
     done
 }
 
-options="A:a:c:r:n:b:s:S:m:l:w:t:T:"
+options="A:a:c:C:r:n:b:s:S:m:l:w:t:T:"
 while getopts ${options} opt; do
     case $opt in
         A) # add a project to a solution file
@@ -112,6 +113,17 @@ while getopts ${options} opt; do
         c)
             echo "Creating csharp project namely: ${OPTARG}"
             dotnet new console -n "${OPTARG}"
+            dotnet build "${OPTARG}"
+            ;;
+        C)
+            mkdir "${OPTARG}"
+            cd "${OPTARG}"
+            dotnet new sln -n "${OPTARG}"
+            ##
+            echo "Creating csharp project namely: ${OPTARG}"
+            dotnet new console -n "${OPTARG}"
+            ##
+            dotnet sln add "${OPTARG}"
             dotnet build "${OPTARG}"
             ;;
         r)
