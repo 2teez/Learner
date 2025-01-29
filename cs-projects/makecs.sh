@@ -3,14 +3,16 @@
 #description: create and clean csharp files
 
 function help() {
-    echo "Usage: ./$(basename $0) -h | -a|-b|-c|-r|-n|-s|-m|-l|-w|-t|-T <filename>"
+    echo "Usage: ./$(basename $0) -h | -a|-A|-b|-c|-r|-n|-s|-S|-m|-l|-w|-t|-T <filename>"
     echo "options:"
+    echo "-A    add a project to a solution in C#"
     echo "-a    create a cshtml file in a folder"
     echo "-b    build and run project name"
     echo "-c    create project name"
     echo "-r    remove project bin folder"
     echo "-n    remove the entire project folder"
     echo "-h    display the help function"
+    echo "-S    create a solution file in C #"
     echo "-s    run a c# script. The script can have either .csx or .cs file extension."
     echo "-t    create a unit test for a c# project"
     echo "-T    run a unit test for a named c# project"
@@ -67,9 +69,12 @@ function lists_and_delete() {
     done
 }
 
-options="a:c:r:n:b:s:m:l:w:t:T:"
+options="A:a:c:r:n:b:s:S:m:l:w:t:T:"
 while getopts ${options} opt; do
     case $opt in
+        A) # add a project to a solution file
+            dotnet sln add "${OPTARG}"
+            ;;
         a)
             filename=$(basename "${OPTARG}")
             file_ext="${filename##*.}"
@@ -147,6 +152,12 @@ while getopts ${options} opt; do
             ;;
         T) # run a unit test project for c#
             dotnet test "${OPTARG}"
+            ;;
+        S)  # create a solution file in C# added to a folder of
+            # the same name
+            sln_directory=$(mkdir "${OPTARG}")
+            cd "${OPTARG}"
+            dotnet new sln -n "${sln_directory}"
             ;;
         s)  # compiling and runing c# script
             dotnet-script "${OPTARG}"
