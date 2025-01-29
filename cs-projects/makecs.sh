@@ -3,7 +3,7 @@
 #description: create and clean csharp files
 
 function help() {
-    echo "Usage: ./$(basename $0) -h | -a|-A|-b|-c|-r|-n|-s|-S|-m|-l|-w|-t|-T <filename>"
+    echo "Usage: ./$(basename $0) -h | -a|-A|-b|-c|-C|-r|-n|-s|-S|-m|-l|-w|-t|-T <filename>"
     echo "options:"
     echo "-A    add a project to a solution in C#"
     echo "-a    create a cshtml file in a folder"
