@@ -3,7 +3,7 @@
 #description: create and clean csharp files
 
 function help() {
-    echo "Usage: ./$(basename $0) -h | -a|-A|-b|-c|-C|-r|-n|-s|-S|-m|-l|-w|-t|-T <filename>"
+    echo "Usage: ./$(basename $0) -h | -a|-A|-b|-c|-C|-r|-n|-p|-s|-S|-m|-l|-w|-t|-T <filename>"
     echo "options:"
     echo "-A    add a project to a solution in C#"
     echo "-a    create a cshtml file in a folder"
@@ -12,6 +12,7 @@ function help() {
     echo "-C    create a project folder, and a solution file and the project to the solution file."
     echo "-r    remove project bin folder"
     echo "-n    remove the entire project folder"
+    echo "-p    add package from NuGet to the project"
     echo "-h    display the help function"
     echo "-S    create a solution file in C #"
     echo "-s    run a c# script. The script can have either .csx or .cs file extension."
@@ -70,7 +71,7 @@ function lists_and_delete() {
     done
 }
 
-options="A:a:c:C:r:n:b:s:S:m:l:w:t:T:"
+options="A:a:c:C:r:n:b:s:S:m:l:p:w:t:T:"
 while getopts ${options} opt; do
     case $opt in
         A) # add a project to a solution file
@@ -143,6 +144,9 @@ while getopts ${options} opt; do
                    continue;;
                 esac
             done
+            ;;
+        p)  # add a named package to the project
+            dotnet add package "${OPTARG}"
             ;;
         n)
             filefound=$(ls | grep "$OPTARG")
