@@ -23,6 +23,12 @@ function help() {
     echo "-w    create a web project namely: ASP.NET MVC, ASP.NET CORE MVC/Razor (webApp) OR WebAPI"
 }
 
+# launch typescript script
+if [[ "${1}" == "typescript" || "${1}" == "type" ]]; then
+  echo "launch the typescript bash script"
+  exit 0
+fi
+
 if [[ $# -ne 2 ]]; then
     help
     exit 1
@@ -203,6 +209,7 @@ while getopts ${options} opt; do
             rm -rf "${OPTARG%.*}.exe";;
         w) makecweb.sh "${OPTARG}" # call the script namely makecweb.sh
         ;;
+        #q) echo "Hello...";;
         h) help && exit1;;
         *) help && exit1;;
     esac
