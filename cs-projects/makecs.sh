@@ -24,10 +24,11 @@ function help() {
 }
 
 # launch typescript script
-if [[ "${1}" == "typescript" || "${1}" == "type" ]]; then
-  echo "launch the typescript bash script"
-  exit 0
-fi
+#if [[ "${1}" == "typescript" || "${1}" == "type" ]]; then
+#  echo "launch the typescript bash script";
+#  makets.sh
+#  exit 0
+#fi
 
 if [[ $# -ne 2 ]]; then
     help
