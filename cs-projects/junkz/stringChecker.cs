@@ -1,4 +1,5 @@
 using System;
+//using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 //
@@ -25,7 +26,7 @@ string GetUserInput(string msg = "Enter a value: ")
 
 var line = GetUserInput();
 // compare the first and the last letter of a word
-Console.WriteLine(FirstAndLastLetterChecker<string>(line.First(), line.Last()));
+FirstAndLastLetterChecker(line.First(), line.Last()).Pp();
 
 bool FirstAndLastLetterChecker<T>(T first, T second) where T : IComparable<T>
 {
