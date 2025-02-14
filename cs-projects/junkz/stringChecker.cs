@@ -1,9 +1,14 @@
 using System;
-//using System.Linq;
 using System.Collections.Generic;
-using System.Collections;
 //
 using OtherFunctions;
+
+using str = OtherFunctions.StrUtil;
+Func<string, string> head = str.First;
+head("tim").Pp();
+
+"java".Head().Pp();
+"clojure".Tail().Pp();
 
 string GetUserInput(string msg = "Enter a value: ")
 {
@@ -34,7 +39,6 @@ bool FirstAndLastLetterChecker<T>(T first, T second) where T : IComparable<T>
 }
 
 
-
 namespace OtherFunctions
 {
     static class Printer
@@ -48,6 +52,19 @@ namespace OtherFunctions
 
     static class StrUtil
     {
+        public static string Head(this string obj)
+        {
+            return obj.First();
+        }
+
+        public static string Tail(this string obj)
+        {
+            if (obj.Length > 0)
+            {
+                return obj.Substring(1);
+            }
+            throw new Exception($"String {obj} can't be empty!");
+        }
         public static string First(this string obj)
         {
             if (obj.Length == 0)
