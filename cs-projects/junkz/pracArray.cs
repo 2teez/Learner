@@ -31,25 +31,30 @@ namespace Main
                 new Person("Larry", "Wall", 55), new Person() };
 
             foreach (var _person in persons) { _person.Pp(); }
+            (persons[0] + persons[2]).Pp();
         }
     }
     //sealed record RPerson(string firstName, string lastName, int Age);
     readonly struct Person
     {
-        internal readonly string firstName;
-        internal readonly string lastName;
-        internal readonly int age;
+        internal readonly string FirstName { get; }
+        internal readonly string LastName { get; }
+        internal readonly int Age { get; }
         public Person(string firstName, string lastName, int age)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.age = age;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Age = age;
+        }
+        public static Person operator +(Person p1, Person p2)
+        {
+            return new Person(p1.FirstName + p2.LastName, p1.LastName, p2.Age);
         }
         //public Person() : this("John", "Doe", 12) { }
         public override string ToString()
         {
-            var fullName = string.Format("{1}, {0}", firstName, lastName);
-            return $"Name: {fullName}, Age: {age}";
+            var fullName = string.Format("{1}, {0}", FirstName, LastName);
+            return $"Name: {fullName}, Age: {Age}";
         }
     }
 }
