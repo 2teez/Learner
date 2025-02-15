@@ -17,6 +17,9 @@ class PracTuple
         var statistics = GetStats(array);
         WriteLine(
         $"Min: {statistics.min}, Max: {statistics.max}, Average: {statistics.average:0.00}");
+        /// tuple
+        (string myName, int myAge) = ("clojure", 12);
+        WriteLine($"Name: {myName} -> Age: {myAge}");
     }
 
     static (int min, int max, double average) GetStats(IEnumerable<int> arr)
