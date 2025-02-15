@@ -26,7 +26,7 @@ namespace Main
                 string.Format("Name: {0} Age: {1}", fullName, ages[i]).Pp();
             }
             // using struct, class or record
-            Person[] persons = { new Person { },
+            Person[] persons = { new Person ("clojure", "josh", 23),
                 new Person("James", "Gostling", 65), new Person(),
                 new Person("Larry", "Wall", 55), new Person() };
 
@@ -34,18 +34,18 @@ namespace Main
         }
     }
     //sealed record RPerson(string firstName, string lastName, int Age);
-    sealed class Person
+    readonly struct Person
     {
-        internal string firstName;
-        internal string lastName;
-        internal int age;
+        internal readonly string firstName;
+        internal readonly string lastName;
+        internal readonly int age;
         public Person(string firstName, string lastName, int age)
         {
             this.firstName = firstName;
             this.lastName = lastName;
             this.age = age;
         }
-        public Person() : this("John", "Doe", 12) { }
+        //public Person() : this("John", "Doe", 12) { }
         public override string ToString()
         {
             var fullName = string.Format("{1}, {0}", firstName, lastName);
