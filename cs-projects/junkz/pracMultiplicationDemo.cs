@@ -7,7 +7,7 @@ namespace MainProgram
     {
         static void Main(string[] args)
         {
-            TimesTable(1, 12, 1, 13, Orientation.Horizontal);
+            TimesTable(2, 10, 0, 12, Orientation.Horizontal);
             //TimesTable(1, 25);
         }
 
@@ -16,9 +16,9 @@ namespace MainProgram
         {
             if (o == Orientation.Vertical)
             {
-                for (var i = _from; i < _to; ++i)
+                for (var i = _from; i <= _to; ++i)
                 {
-                    for (var j = start; j < stop; ++j)
+                    for (var j = start; j <= stop; ++j)
                     {
                         i.Times(j).Pp();
                     }
@@ -26,9 +26,9 @@ namespace MainProgram
             }
             else
             {
-                for (var j = start; j < stop; ++j)
+                for (var j = start; j <= stop; ++j)
                 {
-                    for (var i = _from; i < _to; ++i)
+                    for (var i = _from; i <= _to; ++i)
                     {
                         i.Times(j).PadRight(15).Pp(Console.Write);
                     }
