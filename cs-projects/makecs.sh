@@ -79,6 +79,24 @@ function lists_and_delete() {
     done
 }
 
+function make_html_file() {
+    echo "
+    @{
+        Layout = null;
+    }
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta name=\"\" content=\"width=device-width\" />
+            <title></title>
+        </head>
+        <body>
+            <div></div>
+        </body>
+    </html>
+    " > "${1}"
+}
+
 options="A:a:c:C:r:n:b:s:S:m:l:p:w:W:t:T:"
 while getopts ${options} opt; do
     case $opt in
@@ -96,21 +114,7 @@ while getopts ${options} opt; do
             touch "${OPTARG}"
             directory=$(dirname "${OPTARG}")
             cd "${directory}"
-            echo "
-            @{
-                Layout = null;
-            }
-            <!DOCTYPE html>
-            <html>
-                <head>
-                    <meta name="" content="width=device-width" />
-                    <title></title>
-                </head>
-                <body>
-                    <div></div>
-                </body>
-            </html>
-            " > "${filename}"
+            make_html_file "${filename}" # call function that makes a cshtml file
             ;;
         b) if [[ -e "${OPTARG}" ]]; then
                cd "${OPTARG}"
