@@ -20,6 +20,7 @@ function help() {
     echo "-T    run a unit test for a named c# project"
     echo "-m    manually compiling and running a c# standalone file"
     echo "-l    create a library project folder and link with the project to use it."
+    echo "-W    load the web development ASP.NET in `watch` Mode."
     echo "-w    create a web project namely: ASP.NET MVC, ASP.NET CORE MVC/Razor (webApp) OR WebAPI"
 }
 
@@ -78,7 +79,7 @@ function lists_and_delete() {
     done
 }
 
-options="A:a:c:C:r:n:b:s:S:m:l:p:w:t:T:"
+options="A:a:c:C:r:n:b:s:S:m:l:p:w:W:t:T:"
 while getopts ${options} opt; do
     case $opt in
         A) # add a project to a solution file
@@ -210,7 +211,13 @@ while getopts ${options} opt; do
             rm -rf "${OPTARG%.*}.exe";;
         w) makecweb.sh "${OPTARG}" # call the script namely makecweb.sh
         ;;
-        #q) echo "Hello...";;
+        W)
+            if [[ "${PWD}" != "${OPTARG}" ]]; then
+                cd "${OPTARG}"
+            fi
+
+            dotnet watch
+        ;;
         h) help && exit1;;
         *) help && exit1;;
     esac
